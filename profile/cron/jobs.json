@@ -38,7 +38,10 @@
       "origin": null,
       "enabled_toolsets": null,
       "workdir": null,
-      "fire_claim": null,
+      "fire_claim": {
+        "at": "2026-08-24T21:07:29.882705+03:00",
+        "by": "WIN-EHB031480DQ:15584:f14362906c464e99a284ff6cd3b49a17"
+      },
       "failure_streak": 5
     },
     {
@@ -133,5 +136,5 @@
       "failure_streak": 0
     }
   ],
-  "updated_at": "2026-08-24T10:18:38.369048+03:00"
+  "updated_at": "2026-08-24T21:07:29.885009+03:00"
 }
