@@ -1,0 +1,233 @@
+[
+ {
+  "addr": "ул. Смидович, 8",
+  "title": "2-к. квартира, 47,7 м², 1/3 эт.",
+  "price": 4000000,
+  "price_m2": 83857,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_477_m_13_et._8213423758"
+ },
+ {
+  "addr": "ул. Фрунзе, 17",
+  "title": "2-к. квартира, 43,2 м², 5/5 эт.",
+  "price": 3900000,
+  "price_m2": 90278,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_432_m_55_et._8129051489"
+ },
+ {
+  "addr": "ул. 9 Мая, 14",
+  "title": "2-к. квартира, 43,4 м², 1/5 эт.",
+  "price": 4550000,
+  "price_m2": 104839,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_434_m_15_et._8184313801"
+ },
+ {
+  "addr": "ул. Дмитрия Ульянова, 15",
+  "title": "2-к. квартира, 45,6 м², 5/5 эт.",
+  "price": 4850000,
+  "price_m2": 106360,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_456_m_55_et._8070239409"
+ },
+ {
+  "addr": "ул. Фрунзе, 5",
+  "title": "2-к. квартира, 45,5 м², 4/5 эт.",
+  "price": 4890000,
+  "price_m2": 107473,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_455_m_45_et._7997910376"
+ },
+ {
+  "addr": "Первомайская ул., 46",
+  "title": "2-к. квартира, 47,2 м², 5/5 эт.",
+  "price": 5100000,
+  "price_m2": 108051,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_472_m_55_et._8091241020"
+ },
+ {
+  "addr": "ул. Вересаева, 16",
+  "title": "2-к. квартира, 46,7 м², 5/5 эт.",
+  "price": 5120000,
+  "price_m2": 109636,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_467_m_55_et._7567748345"
+ },
+ {
+  "addr": "Красноармейский пр-т, 21",
+  "title": "2-к. квартира, 44,7 м², 5/5 эт.",
+  "price": 4960000,
+  "price_m2": 110962,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_447_m_55_et._8210716868"
+ },
+ {
+  "addr": "ул. Фридриха Энгельса, 151А",
+  "title": "2-к. квартира, 42 м², 1/5 эт.",
+  "price": 4700000,
+  "price_m2": 111905,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_42_m_15_et._8319482188"
+ },
+ {
+  "addr": "Оружейная ул., 1В",
+  "title": "2-к. квартира, 44 м², 4/5 эт.",
+  "price": 4999000,
+  "price_m2": 113614,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_44_m_45_et._8082159152"
+ },
+ {
+  "addr": "ул. Халтурина, 6",
+  "title": "2-к. квартира, 45,3 м², 1/5 эт.",
+  "price": 5175000,
+  "price_m2": 114238,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_453_m_15_et._7996450409"
+ },
+ {
+  "addr": "ул. 9 Мая, 20",
+  "title": "2-к. квартира, 46 м², 1/2 эт.",
+  "price": 5300000,
+  "price_m2": 115217,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_46_m_12_et._7618060564"
+ },
+ {
+  "addr": "Оружейная ул., 1В",
+  "title": "2-к. квартира, 43,8 м², 2/5 эт.",
+  "price": 5190000,
+  "price_m2": 118493,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_438_m_25_et._7327946022"
+ },
+ {
+  "addr": "ул. Фрунзе, 24",
+  "title": "2-к. квартира, 41,8 м², 2/5 эт.",
+  "price": 5050000,
+  "price_m2": 120813,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_418_m_25_et._8318996027"
+ },
+ {
+  "addr": "ул. Революции, 28",
+  "title": "2-к. квартира, 43 м², 5/5 эт.",
+  "price": 5250000,
+  "price_m2": 122093,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_43_m_55_et._8196915894"
+ },
+ {
+  "addr": "пр-т Ленина, 72",
+  "title": "2-к. квартира, 42,9 м², 2/5 эт.",
+  "price": 5250000,
+  "price_m2": 122378,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_429_m_25_et._8177948633"
+ },
+ {
+  "addr": "пр-т Ленина, 78",
+  "title": "2-к. квартира, 43,4 м², 5/5 эт.",
+  "price": 5350000,
+  "price_m2": 123272,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_434_m_55_et._8076543029"
+ },
+ {
+  "addr": "ул. Фрунзе, 24",
+  "title": "2-к. квартира, 41,8 м², 2/5 эт.",
+  "price": 5290000,
+  "price_m2": 126555,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_418_m_25_et._8130649365"
+ },
+ {
+  "addr": "Красноармейский пр-т, 34",
+  "title": "2-к. квартира, 44 м², 4/5 эт.",
+  "price": 5700000,
+  "price_m2": 129545,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_44_m_45_et._8069003149"
+ },
+ {
+  "addr": "ул. Сойфера, 13",
+  "title": "2-к. квартира, 45,1 м², 4/5 эт.",
+  "price": 5900000,
+  "price_m2": 130820,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_451_m_45_et._7823805628"
+ },
+ {
+  "addr": "ул. Фрунзе, 29",
+  "title": "2-к. квартира, 44,8 м², 5/5 эт.",
+  "price": 5900000,
+  "price_m2": 131696,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_448_m_55_et._7207378935"
+ },
+ {
+  "addr": "ул. Сойфера, 33",
+  "title": "2-к. квартира, 44 м², 2/5 эт.",
+  "price": 5900000,
+  "price_m2": 134091,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_44_m_25_et._8107052948"
+ },
+ {
+  "addr": "пр-т Ленина, 76",
+  "title": "2-к. квартира, 42,4 м², 2/5 эт.",
+  "price": 5900000,
+  "price_m2": 139151,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_424_m_25_et._7692979121"
+ },
+ {
+  "addr": "ул. Фридриха Энгельса, 147",
+  "title": "2-к. квартира, 45 м², 5/5 эт.",
+  "price": 6300000,
+  "price_m2": 140000,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_45_m_55_et._8122289158"
+ },
+ {
+  "addr": "ул. Халтурина, 6",
+  "title": "2-к. квартира, 44,9 м², 2/5 эт.",
+  "price": 6300000,
+  "price_m2": 140312,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_449_m_25_et._8146159393"
+ },
+ {
+  "addr": "ул. Болдина, 108",
+  "title": "2-к. квартира, 44 м², 3/3 эт.",
+  "price": 6200000,
+  "price_m2": 140909,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_44_m_33_et._8116747051"
+ },
+ {
+  "addr": "Оружейная ул., 2Б",
+  "title": "2-к. квартира, 40,8 м², 4/4 эт.",
+  "price": 5900000,
+  "price_m2": 144608,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_408_m_44_et._8196210116"
+ },
+ {
+  "addr": "ул. Фридриха Энгельса, 149",
+  "title": "2-к. квартира, 42,4 м², 1/5 эт.",
+  "price": 6199000,
+  "price_m2": 146203,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_424_m_15_et._8206112190"
+ },
+ {
+  "addr": "Красноармейский пр-т, 8",
+  "title": "2-к. квартира, 39,8 м², 4/9 эт.",
+  "price": 6000000,
+  "price_m2": 150754,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_398_m_49_et._7777895257"
+ },
+ {
+  "addr": "ул. Бундурина, 61",
+  "title": "2-к. квартира, 39,9 м², 2/5 эт.",
+  "price": 6100000,
+  "price_m2": 152882,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_399_m_25_et._8148845172"
+ },
+ {
+  "addr": "ул. Сойфера, 9",
+  "title": "2-к. квартира, 45,3 м², 3/9 эт.",
+  "price": 7600000,
+  "price_m2": 167770,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_453_m_39_et._8180263761"
+ },
+ {
+  "addr": "ул. Агеева, 1А",
+  "title": "2-к. квартира, 43,6 м², 2/5 эт.",
+  "price": 7350000,
+  "price_m2": 168578,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_436_m_25_et._8239764369"
+ },
+ {
+  "addr": "ул. Смидович, 4",
+  "title": "2-к. квартира, 48,7 м², 1/3 эт.",
+  "price": 8300000,
+  "price_m2": 170431,
+  "link": "https://www.avito.ru/tula/kvartiry/2-k._kvartira_487_m_13_et._8177937408"
+ }
+]

@@ -1,0 +1,45 @@
+{
+  "jobs": [
+    {
+      "id": "fb5e12b0624e",
+      "name": "hermes-profile-backup",
+      "prompt": "Daily backup of the Hermes profile to the private GitHub repo AlexUser-RF/HERMES via backup_hermes.sh (watchdog: silent on success, error alert on failure).",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "provider_snapshot": null,
+      "model_snapshot": null,
+      "base_url": null,
+      "script": "backup_hermes.sh",
+      "no_agent": true,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 23 * * *",
+        "display": "0 23 * * *"
+      },
+      "schedule_display": "0 23 * * *",
+      "repeat": {
+        "times": null,
+        "completed": 8
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-09T18:41:06.729530+03:00",
+      "next_run_at": "2026-08-16T23:00:00+03:00",
+      "last_run_at": "2026-08-15T23:00:58.504725+03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null,
+      "fire_claim": null
+    }
+  ],
+  "updated_at": "2026-08-15T23:00:58.518201+03:00"
+}
