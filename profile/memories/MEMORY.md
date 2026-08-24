@@ -2,11 +2,11 @@
 §
 Google Workspace OAuth (coopmessage.me@gmail.com): токен ~/AppData/Local/hermes/google_token.json. Gmail/Calendar/Drive/Sheets/Docs. setup.py через --auth-url.
 §
-Профиль Hermes бэкапится еженедельно по ВС в 23:00 в GitHub AlexUser-RF/HERMES (cron fb5e12b0624e, backup_hermes.sh → ~/hermes-backup): память, переписка, config, skills, cron, SOUL; секреты исключены; git-токен в ~/.git-credentials.
+Бэкап профиля: Пн, Ср, ВС в 23:00 в AlexUser-RF/HERMES-V2 (cron fb5e12b0624e, backup_hermes.sh, state.db в chunks). Генеральная уборка: ВС в 22:50 (cron 59b9ee022b2a, cleanup_hermes.sh). Секреты исключены.
 §
 Доступ: D:\HERMES FILES (корень чистый: 01_проекты, мусор в архив) + AppData\Local\hermes; Terminal.cwd = D:\HERMES FILES. MEDIA-ссылки с пробелами в Desktop глючат (окно ошибки / нет реакции): важные PDF сразу дублировать в D:\HERMES_REPORTS (имена латиницей без пробелов) и открывать через cmd start.
 §
-Hermes Workspace (сторонний веб-UI) в ~/hermes-workspace: UI pnpm dev :3000, dashboard :9119, gateway :8642.
+Hermes Workspace в ~/hermes-workspace: UI :3000, dashboard :9119, gateway :8642.
 §
 Флиппинг: Тула, Фрунзе 17, 2-комн 43.2м², 5/5, кирпич 1966. Куплена 3.9М; ремонт 620-650к; цель 5.6М. План: прихожая 2.5, с/у СОВМ. 2.9, кухня 6.0 (ГАЗ), зал 18.5 (балкон), спальня 12.6, темная комната 2.5. Стиль: Тёплый Сканди/Кинфолк (греж F497/RAL7047, светлый дуб, белый плинтус 80мм, черный металл). Референсы стиля строго без навязывания перепланировок (схемы перепланировки только в отдельных ТЗ).
 §

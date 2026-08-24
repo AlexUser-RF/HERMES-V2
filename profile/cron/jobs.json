@@ -3,7 +3,7 @@
     {
       "id": "fb5e12b0624e",
       "name": "hermes-profile-backup",
-      "prompt": "Daily backup of the Hermes profile to the private GitHub repo AlexUser-RF/HERMES via backup_hermes.sh (watchdog: silent on success, error alert on failure).",
+      "prompt": "Backup of the Hermes profile to the private GitHub repo AlexUser-RF/HERMES-V2 via backup_hermes.sh (Mon, Wed, Sun at 23:00)",
       "skills": [],
       "skill": null,
       "model": null,
@@ -16,33 +16,33 @@
       "context_from": null,
       "schedule": {
         "kind": "cron",
-        "expr": "0 23 * * 0",
-        "display": "0 23 * * 0"
+        "expr": "0 23 * * 1,3,0",
+        "display": "0 23 * * 1,3,0"
       },
-      "schedule_display": "0 23 * * 0",
+      "schedule_display": "0 23 * * 1,3,0",
       "repeat": {
         "times": null,
-        "completed": 17
+        "completed": 18
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-09T18:41:06.729530+03:00",
-      "next_run_at": "2026-08-30T23:00:00+03:00",
-      "last_run_at": "2026-08-24T10:18:38.369048+03:00",
-      "last_status": "error",
-      "last_error": "Script exited with code 1\nstderr:\n[backup-hermes] git push FAILED — check token/network",
+      "next_run_at": "2026-08-26T23:00:00+03:00",
+      "last_run_at": "2026-08-24T21:11:22.638360+03:00",
+      "last_status": "ok",
+      "last_error": null,
       "last_delivery_error": null,
       "deliver": "local",
       "origin": null,
       "enabled_toolsets": null,
       "workdir": null,
       "fire_claim": {
-        "at": "2026-08-24T21:07:29.882705+03:00",
-        "by": "WIN-EHB031480DQ:15584:f14362906c464e99a284ff6cd3b49a17"
+        "at": "2026-08-24T23:00:34.486202+03:00",
+        "by": "WIN-EHB031480DQ:15948:a05c5947945943e1b56f914e2e4d2e8c"
       },
-      "failure_streak": 5
+      "failure_streak": 0
     },
     {
       "id": "30bccd05b197",
@@ -134,7 +134,51 @@
       "workdir": null,
       "fire_claim": null,
       "failure_streak": 0
+    },
+    {
+      "id": "59b9ee022b2a",
+      "name": "hermes-weekly-cleanup",
+      "prompt": "Weekly maintenance, cache cleanup and file organization (Sundays at 22:50)",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "provider_snapshot": null,
+      "model_snapshot": null,
+      "base_url": null,
+      "script": "cleanup_hermes.sh",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "cron",
+        "expr": "50 22 * * 0",
+        "display": "50 22 * * 0"
+      },
+      "schedule_display": "50 22 * * 0",
+      "repeat": {
+        "times": null,
+        "completed": 1
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-08-24T21:32:28.233468+03:00",
+      "next_run_at": "2026-08-30T22:50:00+03:00",
+      "last_run_at": "2026-08-24T21:32:32.603595+03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "failure_streak": 0,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null,
+      "fire_claim": null
     }
   ],
-  "updated_at": "2026-08-24T21:07:29.885009+03:00"
+  "updated_at": "2026-08-24T23:00:34.497693+03:00"
 }
