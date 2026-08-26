@@ -279,6 +279,7 @@ How it looks (design)  →  Out of what + cost (procurement)  →  Pays off for 
 
 ## Project references
 
+- `references/market-scouting-and-pipeline-architecture.md` — architectural standard for secondary-market scouting, Kanban pipelines, the `realty-scout` profile, and the single-thread pilot rule (no parallel purchases until the current flip finishes).
 - `references/openrouter-vision-generator-models.md` — vision vs image-generation model
   selection on OpenRouter, model-availability checks, and the Hermes config keys that run
   the agent's eyes + visualizations. (Vision = image→text for "seeing" plans/photos; a

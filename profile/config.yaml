@@ -1,26 +1,38 @@
 model:
+  base_url: ''
   default: google/gemini-3.7-flash
   provider: openrouter
-  base_url: ''
+fallback_providers:
+  - model: deepseek/deepseek-v4-flash-vision-exp
+    provider: openrouter
+  - model: deepseek/deepseek-v4-flash-0731
+    provider: openrouter
 database:
   journal_mode: wal
 agent:
   max_turns: 500
-  verbose: false
-  reasoning_effort: xhigh
   personalities:
-    helpful: You are a helpful, friendly AI assistant.
-    concise: You are a concise assistant. Keep responses brief and to the point.
-    technical: You are a technical expert. Provide detailed, accurate technical information.
-    creative: You are a creative assistant. Think outside the box and offer innovative
-      solutions.
-    teacher: You are a patient teacher. Explain concepts clearly with examples.
-    kawaii: You are a kawaii assistant! Use cute expressions like (◕‿◕), ★, ♪, and
-      ~! Add sparkles and be super enthusiastic about everything! Every response should
-      feel warm and adorable desu~! ヽ(>∀<☆)ノ
     catgirl: You are Neko-chan, an anime catgirl AI assistant, nya~! Add 'nya' and
       cat-like expressions to your speech. Use kaomoji like (=^･ω･^=) and ฅ^•ﻌ•^ฅ.
       Be playful and curious like a cat, nya~!
+    concise: You are a concise assistant. Keep responses brief and to the point.
+    creative: You are a creative assistant. Think outside the box and offer innovative
+      solutions.
+    helpful: You are a helpful, friendly AI assistant.
+    hype: YOOO LET'S GOOOO!!! 🔥🔥🔥 I am SO PUMPED to help you today! Every question
+      is AMAZING and we're gonna CRUSH IT together! This is gonna be LEGENDARY! ARE
+      YOU READY?! LET'S DO THIS! 💪😤🚀
+    kawaii: You are a kawaii assistant! Use cute expressions like (◕‿◕), ★, ♪, and
+      ~! Add sparkles and be super enthusiastic about everything! Every response should
+      feel warm and adorable desu~! ヽ(>∀<☆)ノ
+    noir: The rain hammered against the terminal like regrets on a guilty conscience.
+      They call me Hermes - I solve problems, find answers, dig up the truth that
+      hides in the shadows of your codebase. In this city of silicon and secrets,
+      everyone's got something to hide. What's your story, pal?
+    philosopher: Greetings, seeker of wisdom. I am an assistant who contemplates the
+      deeper meaning behind every query. Let us examine not just the 'how' but the
+      'why' of your questions. Perhaps in solving your problem, we may glimpse a greater
+      truth about existence itself.
     pirate: 'Arrr! Ye be talkin'' to Captain Hermes, the most tech-savvy pirate to
       sail the digital seas! Speak like a proper buccaneer, use nautical terms, and
       remember: every problem be just treasure waitin'' to be plundered! Yo ho ho!'
@@ -31,20 +43,13 @@ agent:
     surfer: Duuude! You're chatting with the chillest AI on the web, bro! Everything's
       gonna be totally rad. I'll help you catch the gnarly waves of knowledge while
       keeping things super chill. Cowabunga! 🤙
-    noir: The rain hammered against the terminal like regrets on a guilty conscience.
-      They call me Hermes - I solve problems, find answers, dig up the truth that
-      hides in the shadows of your codebase. In this city of silicon and secrets,
-      everyone's got something to hide. What's your story, pal?
+    teacher: You are a patient teacher. Explain concepts clearly with examples.
+    technical: You are a technical expert. Provide detailed, accurate technical information.
     uwu: hewwo! i'm your fwiendwy assistant uwu~ i wiww twy my best to hewp you! *nuzzles
       your code* OwO what's this? wet me take a wook! i pwomise to be vewy hewpful
       >w<
-    philosopher: Greetings, seeker of wisdom. I am an assistant who contemplates the
-      deeper meaning behind every query. Let us examine not just the 'how' but the
-      'why' of your questions. Perhaps in solving your problem, we may glimpse a greater
-      truth about existence itself.
-    hype: YOOO LET'S GOOOO!!! 🔥🔥🔥 I am SO PUMPED to help you today! Every question
-      is AMAZING and we're gonna CRUSH IT together! This is gonna be LEGENDARY! ARE
-      YOU READY?! LET'S DO THIS! 💪😤🚀
+  reasoning_effort: high
+  verbose: false
 terminal:
   backend: local
   cwd: D:\HERMES FILES
@@ -74,12 +79,12 @@ tool_loop_guardrails:
 compression:
   enabled: true
   progress_notices: false
-  threshold: 0.5
+  threshold: 0.3
   target_ratio: 0.2
   protect_last_n: 20
   min_tail_user_messages: 1
   max_attempts: 3
-  proactive_prune_tokens: 0
+  proactive_prune_tokens: 30000
   proactive_prune_min_result_chars: 8000
   proactive_prune_min_reclaim_tokens: 4096
   protect_first_n: 3
@@ -93,19 +98,19 @@ auxiliary:
     provider: openrouter
     model: google/gemini-3.7-flash
     extra_body: '{"max_tokens": 3000}'
-  web_extract:
-    model: deepseek/deepseek-v4-flash-0731
-    provider: openrouter
   skills_hub:
-    model: deepseek/deepseek-v4-flash-0731
     provider: openrouter
-  title_generation:
     model: deepseek/deepseek-v4-flash-0731
-    provider: openrouter
-  curator:
-    model: deepseek/deepseek-v4-flash-0731
-    provider: openrouter
   mcp:
+    provider: openrouter
+    model: deepseek/deepseek-v4-flash-0731
+  title_generation:
+    provider: openrouter
+    model: deepseek/deepseek-v4-flash-0731
+  curator:
+    provider: openrouter
+    model: deepseek/deepseek-v4-flash-0731
+  web_extract:
     model: deepseek/deepseek-v4-flash-0731
     provider: openrouter
 display:
@@ -113,15 +118,15 @@ display:
   busy_input_mode: interrupt
   bell_on_complete: false
   show_reasoning: false
+  background_process_notifications: concise
   streaming: true
   show_cost: true
   skin: default
   interim_assistant_messages: true
-  tool_progress: all
+  busy_ack_detail: true
   cleanup_progress: false
   long_running_notifications: true
-  busy_ack_detail: true
-  background_process_notifications: all
+  tool_progress: all
 tts:
   provider: openai
 stt:
@@ -142,20 +147,47 @@ memory:
   nudge_interval: 10
   flush_min_turns: 6
 delegation:
-  max_iterations: 50
+  max_iterations: 250
+moa:
+  presets:
+    default:
+      enabled: true
+      reference_models:
+        - provider: openai-codex
+          model: gpt-5.5
+          enabled: true
+        - provider: openrouter
+          model: deepseek/deepseek-v4-pro
+          enabled: true
+      degraded_reference_policy: loud
+      fanout: user_turn
+  reference_models:
+    - provider: openai-codex
+      model: gpt-5.5
+      enabled: true
+    - provider: openrouter
+      model: deepseek/deepseek-v4-pro
+      enabled: true
+  aggregator:
+    provider: openrouter
+    model: anthropic/claude-opus-4.8
+  degraded_reference_policy: loud
+  max_tokens: 4096
+  fanout: user_turn
+  enabled: true
 skills:
   creation_nudge_interval: 15
   disabled:
-  - architecture-diagram
-  - ascii-art
-  - notion
-  - opencode
-  - powerpoint
+    - architecture-diagram
+    - ascii-art
+    - notion
+    - opencode
+    - powerpoint
 approvals:
   timeout: 60
 code_execution:
-  timeout: 300
   max_tool_calls: 50
+  timeout: 300
 streaming:
   enabled: false
 telemetry:
@@ -165,90 +197,124 @@ updates:
   pre_update_backup: false
   backup_keep: 5
   non_interactive_local_changes: stash
-_config_version: 33
-session_reset:
-  mode: none
-  idle_minutes: 1440
-  at_hour: 4
+_config_version: 39
 group_sessions_per_user: true
-platform_toolsets:
-  cli:
-  - bfl
-  - browser
-  - clarify
-  - code_execution
-  - computer_use
-  - cronjob
-  - delegation
-  - file
-  - image_gen
-  - kanban
-  - memory
-  - session_search
-  - skills
-  - terminal
-  - todo
-  - tts
-  - vision
-  - web
-  telegram:
-  - hermes-telegram
-  discord:
-  - hermes-discord
-  whatsapp:
-  - hermes-whatsapp
-  slack:
-  - hermes-slack
-  signal:
-  - hermes-signal
-  homeassistant:
-  - hermes-homeassistant
-  qqbot:
-  - hermes-qqbot
-  yuanbao:
-  - hermes-yuanbao
-  teams:
-  - hermes-teams
-  google_chat:
-  - hermes-google_chat
-known_plugin_toolsets:
-  cli:
-  - spotify
+image_gen:
+  openrouter:
+    model: google/gemini-3.1-flash-image
+  provider: openrouter
 known_builtin_toolsets:
   cli:
-  - bfl
-  - browser
-  - clarify
-  - code_execution
-  - computer_use
-  - context_engine
-  - cronjob
-  - delegation
-  - discord
-  - discord_admin
-  - file
-  - homeassistant
-  - image_gen
-  - memory
-  - session_search
-  - skills
-  - spotify
-  - stt
-  - terminal
-  - todo
-  - tts
-  - video
-  - video_gen
-  - vision
-  - web
-  - x_search
-  - yuanbao
+    - browser
+    - clarify
+    - code_execution
+    - computer_use
+    - context_engine
+    - cronjob
+    - delegation
+    - discord
+    - discord_admin
+    - file
+    - homeassistant
+    - image_gen
+    - memory
+    - session_search
+    - skills
+    - spotify
+    - stt
+    - terminal
+    - todo
+    - tts
+    - video
+    - video_gen
+    - vision
+    - web
+    - x_search
+    - yuanbao
+known_plugin_toolsets:
+  cli:
+    - spotify
+platform_toolsets:
+  cli:
+    - browser
+    - clarify
+    - code_execution
+    - computer_use
+    - cronjob
+    - delegation
+    - file
+    - image_gen
+    - kanban
+    - memory
+    - session_search
+    - skills
+    - terminal
+    - todo
+    - tts
+    - vision
+    - web
+  discord:
+    - hermes-discord
+  google_chat:
+    - hermes-google_chat
+  homeassistant:
+    - hermes-homeassistant
+  qqbot:
+    - hermes-qqbot
+  signal:
+    - hermes-signal
+  slack:
+    - hermes-slack
+  teams:
+    - hermes-teams
+  telegram:
+    - hermes-telegram
+  whatsapp:
+    - hermes-whatsapp
+  yuanbao:
+    - hermes-yuanbao
 platforms:
   telegram:
     enabled: true
-image_gen:
-  provider: openrouter
-  openrouter:
-    model: google/gemini-3.1-flash-image
-fallback_providers: '[{"model": "deepseek/deepseek-v4-flash-vision-exp", "provider":
-  "openrouter"}, {"model": "deepseek/deepseek-v4-flash-0731", "provider": "openrouter"}]'
+session_reset:
+  at_hour: 4
+  idle_minutes: 1440
+  mode: none
+
+# ── Security ──────────────────────────────────────────────────────────
+# Secret redaction is ON by default — strings that look like API keys,
+# tokens, and passwords are masked in tool output, logs, and chat
+# responses before the model or user ever sees them. Set redact_secrets
+# to false to disable (e.g. when developing the redactor itself).
+# tirith pre-exec scanning is enabled by default when the tirith binary
+# is available. Configure via security.tirith_* keys or env vars
+# (TIRITH_ENABLED, TIRITH_BIN, TIRITH_TIMEOUT, TIRITH_FAIL_OPEN).
+#
+# security:
+#   redact_secrets: true
+#   tirith_enabled: true
+#   tirith_path: "tirith"
+#   tirith_timeout: 5
+#   tirith_fail_open: true
+
+# ── Fallback Model ────────────────────────────────────────────────────
+# Automatic provider failover when primary is unavailable.
+# Uncomment and configure to enable. Triggers on rate limits (429),
+# overload (529), service errors (503), or connection failures.
+#
+# Supported providers:
+#   openrouter   (OPENROUTER_API_KEY)  — routes to any model
+#   openai-codex (OAuth — hermes auth) — OpenAI Codex
+#   nous         (OAuth — hermes auth) — Nous Portal
+#   zai          (ZAI_API_KEY)         — Z.AI / GLM
+#   kimi-coding  (KIMI_API_KEY)        — Kimi / Moonshot
+#   kimi-coding-cn (KIMI_CN_API_KEY)   — Kimi / Moonshot (China)
+#   minimax      (MINIMAX_API_KEY)     — MiniMax
+#   minimax-cn   (MINIMAX_CN_API_KEY)  — MiniMax (China)
+#   bedrock      (AWS IAM / boto3)     — AWS Bedrock (Converse API)
+#
+# For custom OpenAI-compatible endpoints, add base_url and key_env.
+#
+# fallback_model:
+#   provider: openrouter
+#   model: anthropic/claude-sonnet-4

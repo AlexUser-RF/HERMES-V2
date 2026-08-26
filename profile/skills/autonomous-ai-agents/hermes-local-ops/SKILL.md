@@ -36,7 +36,9 @@ Operational playbook for Alexey's local Hermes installation. Covers the two stan
 
 ## References
 
+- `references/avatar-and-profile-assets.md` — avatar asset storage paths (`assets/avatar.png`), multi-profile asset distribution, and Telegram @BotFather sync instructions.
 - `references/profile-backup.md` — backup procedure, include/exclude lists, watchdog cron pattern, verification checklist.
 - `references/gateway-api-and-workspace.md` — enabling the OpenAI-compatible API server (:8642), dashboard (:9119), Workspace install/restart.
 - `references/auxiliary-vision-resolution.md` — как Hermes выбирает vision-модель: дефолт OpenRouter google/gemini-3.6-flash, порядок auto-детекта, ключи конфига, питфолл 402 на малом балансе OpenRouter (image-gen ≠ vision-анализ).
+- `references/profile-session-reset.md` — процедура безопасной очистки контекста/сессий отдельных профилей (`state.db`, бэкап перед сбросом, сохранение `SOUL.md` и памяти).
 - `references/telegram-gateway-vpn-troubleshooting.md` — Telegram API blocking in RF, VPN toggle disconnections, Windows Task Scheduler VBS launcher quirks, and safe gateway restart via `Start-ScheduledTask`.
