@@ -6,6 +6,12 @@ Each profile has its own `state.db` (sessions, message logs, model usage, FTS in
 
 When a user requests to clear context / reset session for a specific bot profile (e.g. `flipping` or `realty-scout`):
 
+## Core Motivation: Cost & Token Optimization
+The primary purpose of clearing context is **avoiding token overpayment and reducing API costs** on long conversational threads.
+- Never delete long-term memories (`MEMORY.md`, `USER.md`), system personality (`SOUL.md`), project notes, or spreadsheets.
+- If there is any doubt about what to delete or keep, **always ask the user first**.
+- Safe default behavior: wipe ONLY message history (`messages`, `sessions`, `fts`), keeping knowledge bases completely intact.
+
 ### 1. Clarification & Scope
 Always clarify or confirm what level of reset is requested:
 - **Session history only (Recommended)**: Clears conversation history and tokens, keeps `SOUL.md`, `memories/`, `skills/`, and Telegram configuration intact.

@@ -280,6 +280,7 @@ How it looks (design)  →  Out of what + cost (procurement)  →  Pays off for 
 ## Project references
 
 - `references/market-scouting-and-pipeline-architecture.md` — architectural standard for secondary-market scouting, Kanban pipelines, the `realty-scout` profile, and the single-thread pilot rule (no parallel purchases until the current flip finishes).
+- `references/model-cascade-vision-funnel.md` — **cost-aware multi-model «воронка зрения»**: MiniMax Free (бесплатный глубокий парсинг/ресёрч) → DeepSeek Vision (дешёвый черновой OCR/отбор фото) → Gemini 3.7 Flash (экспертный финал/смета). Применяется во ВСЕХ чатах: массовый парсинг и длинные документы — на дешёвых моделях, финальный дизайн/дефектовка/смета — строго на Gemini 3.7 (его не режем через reasoning_effort).
 - `references/openrouter-vision-generator-models.md` — vision vs image-generation model
   selection on OpenRouter, model-availability checks, and the Hermes config keys that run
   the agent's eyes + visualizations. (Vision = image→text for "seeing" plans/photos; a
