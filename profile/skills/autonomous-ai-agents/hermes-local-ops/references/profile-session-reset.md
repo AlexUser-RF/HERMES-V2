@@ -25,9 +25,12 @@ Always clarify or confirm what level of reset is requested:
    cp "$LOCALAPPDATA/hermes/profiles/<profile>/state.db" "$LOCALAPPDATA/hermes/profiles/<profile>/desktop-backups/state_backup_before_reset_$(date +%Y%m%d_%H%M%S).db"
    ```
 
-2. **Execute Clean Reset via SQLite**:
+2. **Execute Clean Reset via SQLite Backup Template (Safe Pattern)**:
+   > **Критически важно:** Нельзя вручную удалять строки из теневых таблиц FTS5 (`messages_fts_data`, `messages_fts_idx` и др.) через `DELETE`, так как это повреждает внутренний заголовок формата индекса FTS5 (`invalid fts5 file format (found 0, expected 4 or 5)`).
+   > Для безопасной очистки всегда используется очистка основных таблиц и перестроение через `INSERT INTO table(table) VALUES('rebuild')`:
+
    ```python
-   import sqlite3, os
+   import os, sqlite3
 
    db_path = os.path.expandvars(r'%LOCALAPPDATA%\hermes\profiles\<profile>\state.db')
    conn = sqlite3.connect(db_path)
@@ -37,13 +40,11 @@ Always clarify or confirm what level of reset is requested:
    cur.execute('DELETE FROM messages')
    cur.execute('DELETE FROM session_model_usage')
    cur.execute('DELETE FROM sessions')
+   cur.execute('DELETE FROM system_prompts')
 
-   # Clear full-text search tables if present
-   for fts_table in ['messages_fts', 'messages_fts_trigram']:
-       try:
-           cur.execute(f'DELETE FROM {fts_table}')
-       except sqlite3.OperationalError:
-           pass
+   # Rebuild FTS5 indexes properly
+   cur.execute("INSERT INTO messages_fts(messages_fts) VALUES('rebuild')")
+   cur.execute("INSERT INTO messages_fts_trigram(messages_fts_trigram) VALUES('rebuild')")
 
    conn.commit()
    cur.execute('VACUUM')

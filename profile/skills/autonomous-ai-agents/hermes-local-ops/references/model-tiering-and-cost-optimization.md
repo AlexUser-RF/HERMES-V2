@@ -20,6 +20,13 @@ On OpenRouter, pricing changes periodically (e.g., promotional discounts expire)
 ### 3. Precision Code & Skill Hub ("Code Workhorse")
 - **`deepseek/deepseek-v4-flash-0731`** or **`deepseek/deepseek-v4-pro`**:
   - Unmatched Python syntax precision, schema compliance, and low cost for background skill curation and internal tools.
+  - Note: Not recommended as conversational fallback for general multi-turn reasoning and tool use.
+
+### 4. Robust Conversational Fallback Chain
+When primary `google/gemini-3.7-flash` balance runs out or rate-limits, Hermes automatically cascades to:
+1. **`openai/gpt-5.6-luna`** (low cost, 1.05M context, excellent tool calling & dialogue continuity).
+2. **`minimax/minimax-m3:free`** (1M context, 100% free fallback).
+3. **`z-ai/glm-5.2:free`** (256k context, free backup).
 
 ## Configuration Keys in `config.yaml`
 ```yaml
