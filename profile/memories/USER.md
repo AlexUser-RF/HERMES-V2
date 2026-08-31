@@ -1,6 +1,4 @@
-User (Алексей) communicates in Russian via Telegram; runs Hermes Desktop v0.20 (Windows, C:\Users\Administrator) with the Telegram gateway on the same machine. Was initially confused that desktop and Telegram are separate interfaces — explain surface differences when relevant.
-§
-Алексей из РФ, предприниматель. Основной бизнес: покупка недвижимости с торгов по банкротству/арестованного имущества и с рынка — делает ремонт и продаёт, стратегия 1 квартира в 2 месяца. Доп. доход: Wildberries, кружки с принтами (тест-MVP, FBS); бренд одежды Divine Element на паузе (товар сгорел на складе). Ходит в спортзал 4 раза в неделю, занимается фитнесом.
+User (Алексей) общается на русском в Telegram и Hermes Desktop (Win11). Предприниматель: флиппинг (1 кв/2 мес, покупка с торгов/рынка, ремонт, продажа), WB кружки (FBS), бренд Divine Element (пауза). Фитнес 4р/нед.
 §
 Хочет, чтобы Hermes и размышлял, и отвечал на русском. Честность: pushback без сахара, прямо указывать, где неправ.
 §
@@ -9,3 +7,5 @@ User (Алексей) communicates in Russian via Telegram; runs Hermes Desktop 
 Хочет, чтобы Hermes был бизнес-партнёром и дизайнером: глубокий анализ рынка/материалов, расчёт сметы/маржи, техрешения («как выглядит → из чего собрать → окупится ли»). Требует только проверенные реальные кейсы с фото и точными артикулами, а не абстрактные AI-генерации или поисковые ссылки на Pinterest. Оффлайн HTML-чек-листы для замеров.
 §
 Персонализирует Hermes через SOUL.md (характер, профессионализм), инфу о себе добавляет постепенно. Якорную первую строку SOUL.md не трогать.
+§
+После плановых cron-задач писать результаты и статус. Браузер: Vivaldi (Chrome только для WB). Любит обе части игры The Last of Us. Хобби: YT-канал @AloneSoundLab (dark ambient, Kling/Veo, Suno, DaVinci).

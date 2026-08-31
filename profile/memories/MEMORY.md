@@ -1,6 +1,6 @@
-Проекты: 1) Флиппинг Фрунзе 17 (пилот: ремонт+продажа, фокус 100%, затем масштабирование); 2) WB кружки; 3) Divine Element. Сверять приоритеты в начале работы.
+Проекты: 1) Флиппинг Фрунзе 17 (пилот, фокус 100%); 2) WB 'Галерея 17' (кружки, FBS: идеи принтов, слоганы, визуал; юнитку и остатки Алексей ведет сам, работа в Desktop); 3) Divine Element.
 §
-Google OAuth (coopmessage.me@gmail.com): токен ~/AppData/Local/hermes/google_token.json (Gmail/Calendar/Drive/Sheets/Docs).
+Google OAuth (coopmessage.me@gmail.com): токен ~/AppData/Local/hermes/google_token.json (Gmail/Calendar/Drive/Sheets/Docs + YouTube Data API).
 §
 Бэкап профиля: Пн, Ср, ВС 23:00 в AlexUser-RF/HERMES-V2 (cron fb5e12b0624e). Уборка: ВС 22:50 (cron 59b9ee022b2a).
 §
