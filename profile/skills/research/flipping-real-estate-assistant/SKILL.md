@@ -20,6 +20,7 @@ flipping deals (his #1 priority business: buy low, renovate, sell fast for margi
 > friendly**. Every single decision is tested by ONE question:
 > **does it raise the sale price / speed up the sale — or does it only raise the estimate?**
 
+- **Market Liquidity > Personal Taste (Strict Rule):** The user's personal aesthetic preferences (e.g. dark ambient, deep cinematic textures, complex moody tones) belong in personal spaces and creative projects (AloneSoundLab / Echo). In flipping projects, decisions are dictated **strictly by what the target mass-market buyer wants and buys**: light, spacious, universally appealing, high-liquidity finishes. Never project personal taste onto the flipping product.
 - Goal is NOT a bespoke interior. It is a liquid apartment that sells fast at max
   controlled-budget margin. If a decision only inflates the estimate, cut it.
 - Pick one **neutral/light/soft-Scandinavian** direction: warm-white/light-gray
