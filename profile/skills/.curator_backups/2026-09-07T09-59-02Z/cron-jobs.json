@@ -29,7 +29,7 @@
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-09T18:41:06.729530+03:00",
-      "next_run_at": "2026-09-09T23:00:00+03:00",
+      "next_run_at": "2026-09-07T23:00:00+03:00",
       "last_run_at": "2026-09-06T23:01:12.284616+03:00",
       "last_status": "ok",
       "last_error": null,
@@ -38,15 +38,12 @@
       "origin": null,
       "enabled_toolsets": null,
       "workdir": null,
-      "fire_claim": {
-        "at": "2026-09-07T23:00:38.153651+03:00",
-        "by": "WIN-EHB031480DQ:14392:a47313c3938341428260e272056746b4"
-      },
+      "fire_claim": null,
       "failure_streak": 0,
       "last_dispatch": {
-        "scheduled_at": "2026-09-07T23:00:00+03:00",
-        "dispatched_at": "2026-09-07T23:00:37.727157+03:00",
-        "lateness_seconds": 37.7,
+        "scheduled_at": "2026-09-06T23:00:00+03:00",
+        "dispatched_at": "2026-09-06T23:00:32.090679+03:00",
+        "lateness_seconds": 32.1,
         "kind": "on_time"
       }
     },
@@ -195,5 +192,5 @@
       }
     }
   ],
-  "updated_at": "2026-09-07T23:00:38.157047+03:00"
+  "updated_at": "2026-09-07T10:52:50.244315+03:00"
 }

@@ -620,14 +620,14 @@
     "created_by": null,
     "last_patched_at": null,
     "last_reused_patch_generation": 0,
-    "last_used_at": "2026-08-31T20:44:36.544673+00:00",
-    "last_viewed_at": "2026-08-31T20:44:36.538360+00:00",
+    "last_used_at": "2026-09-06T21:43:22.309088+00:00",
+    "last_viewed_at": "2026-09-06T21:43:22.300043+00:00",
     "patch_count": 0,
     "patch_generation": 0,
     "pinned": false,
     "state": "active",
-    "use_count": 29,
-    "view_count": 29
+    "use_count": 30,
+    "view_count": 30
   },
   "hermes-agent-skill-authoring": {
     "archived_at": null,
@@ -1079,6 +1079,21 @@
     "use_count": 0,
     "view_count": 0
   },
+  "reddit-reading": {
+    "archived_at": null,
+    "created_at": "2026-09-07T09:59:03.515321+00:00",
+    "created_by": null,
+    "last_patched_at": null,
+    "last_reused_patch_generation": 0,
+    "last_used_at": null,
+    "last_viewed_at": null,
+    "patch_count": 0,
+    "patch_generation": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 0,
+    "view_count": 0
+  },
   "requesting-code-review": {
     "archived_at": null,
     "created_at": "2026-08-16T16:30:01.307881+00:00",
@@ -1097,6 +1112,21 @@
   "research-paper-writing": {
     "archived_at": null,
     "created_at": "2026-08-16T16:30:01.313601+00:00",
+    "created_by": null,
+    "last_patched_at": null,
+    "last_reused_patch_generation": 0,
+    "last_used_at": null,
+    "last_viewed_at": null,
+    "patch_count": 0,
+    "patch_generation": 0,
+    "pinned": false,
+    "state": "active",
+    "use_count": 0,
+    "view_count": 0
+  },
+  "rss-feeds": {
+    "archived_at": null,
+    "created_at": "2026-09-07T09:59:03.550856+00:00",
     "created_by": null,
     "last_patched_at": null,
     "last_reused_patch_generation": 0,
