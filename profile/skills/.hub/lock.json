@@ -16,6 +16,40 @@
       },
       "installed_at": "2026-08-30T16:07:13.714967+00:00",
       "updated_at": "2026-08-30T16:07:13.714967+00:00"
+    },
+    "rss-feeds": {
+      "source": "official",
+      "identifier": "official/research/rss-feeds",
+      "trust_level": "builtin",
+      "scan_verdict": "backfilled",
+      "content_hash": "sha256:10674c52ae6ca2f6",
+      "install_path": "research/rss-feeds",
+      "files": [
+        "scripts/feed.py",
+        "SKILL.md"
+      ],
+      "metadata": {
+        "backfilled_from": "optional-skills"
+      },
+      "installed_at": "2026-09-09T08:58:03.377081+00:00",
+      "updated_at": "2026-09-09T08:58:03.377081+00:00"
+    },
+    "reddit-reading": {
+      "source": "official",
+      "identifier": "official/social-media/reddit-reading",
+      "trust_level": "builtin",
+      "scan_verdict": "backfilled",
+      "content_hash": "sha256:e74aabacf82acb64",
+      "install_path": "social-media/reddit-reading",
+      "files": [
+        "scripts/reddit.py",
+        "SKILL.md"
+      ],
+      "metadata": {
+        "backfilled_from": "optional-skills"
+      },
+      "installed_at": "2026-09-09T08:58:03.488042+00:00",
+      "updated_at": "2026-09-09T08:58:03.488042+00:00"
     }
   }
 }
