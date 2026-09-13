@@ -17,6 +17,11 @@ Always clarify or confirm what level of reset is requested:
 - **Session history only (Recommended)**: Clears conversation history and tokens, keeps `SOUL.md`, `memories/`, `skills/`, and Telegram configuration intact.
 - **Full profile reset**: Deletes memories and customizations (requires explicit confirmation).
 
+## Telegram / Gateway Session Reset
+When Telegram context grows too large (e.g. hundreds of messages in DM chat `242447706`), it can be reset without losing bot memory:
+- **Direct in-chat command**: send `/new` or `/reset` in Telegram DM. The gateway starts a clean session immediately.
+- **System reset via SQLite**: target the main profile's `state.db` (or profile state if routed). Find session via `SELECT id FROM sessions WHERE source = 'telegram' AND chat_id = ?`, delete its messages from `messages`, delete the session row, and rebuild FTS5 indexes. Keep `channel_directory.json` and gateway configurations untouched.
+
 ### 2. Session Reset Procedure (Safe Pattern)
 
 1. **Backup State DB first**:
@@ -52,6 +57,12 @@ Always clarify or confirm what level of reset is requested:
    conn.close()
    ```
 
-3. **Verify Integrity**:
+3. **Purge request dumps from sessions folder**:
+   In addition to clearing `state.db`, Hermes accumulates API request dump files under `$LOCALAPPDATA/hermes/profiles/<profile>/sessions/request_dump_*.json`. Remove them to free disk space and avoid stale context cache ingestion:
+   ```bash
+   rm -f "$LOCALAPPDATA/hermes/profiles/<profile>/sessions"/request_dump_*.json
+   ```
+
+4. **Verify Integrity**:
    - Verify `sessions` and `messages` count is 0.
    - Verify `SOUL.md`, `memories/MEMORY.md`, and `memories/USER.md` are preserved.

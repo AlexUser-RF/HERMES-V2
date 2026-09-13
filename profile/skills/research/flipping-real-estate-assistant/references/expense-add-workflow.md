@@ -81,14 +81,40 @@ When building the values array for the Google Sheets API, use `;` in every formu
 
 The Google Sheets API call pattern:
 ```python
-sheets_service.spreadsheets().values().update(
-    spreadsheetId=spreadsheet_id,
-    range="'Факт расходов'!A1:J{last_row}",
-    valueInputOption='USER_ENTERED',
-    body={'values': fact_values}
-).execute()
+# REST API direct pattern (no googleapiclient dependency needed):
+import json
+import urllib.request
+import urllib.parse
+
+def update_gsheets_range(spreadsheet_id, range_name, values, access_token):
+    encoded_rng = urllib.parse.quote(range_name)
+    url = f"https://sheets.googleapis.com/v4/spreadsheets/{spreadsheet_id}/values/{encoded_rng}?valueInputOption=USER_ENTERED"
+    body = json.dumps({"values": values}).encode("utf-8")
+    req = urllib.request.Request(url, data=body, method="PUT", headers={
+        "Authorization": f"Bearer {access_token}",
+        "Content-Type": "application/json"
+    })
+    with urllib.request.urlopen(req) as resp:
+        return json.loads(resp.read().decode("utf-8"))
 ```
 Use a retry loop (3 attempts with 2s backoff) since Google Sheets occasionally returns 503.
+
+### 5.1. Multi-item Receipt Breakdown & Categorization Standard
+
+When processing a retail store receipt containing mixed trades (e.g. plumbing + tiles + adhesive + leveling clips):
+- **NEVER collapse into a single catch-all line:** A lump sum cannot feed category-specific `SUMIF` formulas on the summary dashboard (`Сантехника`, `Черновая`, `Чистовая`, `Инструмент`).
+- **Group into 3–4 logical stage packages:**
+  1. *Sanitary ware & fixtures (`Сантехника / Санфаянс`):* bathtub, frame, front panel, toilet, basin, faucets, shower set, trap.
+  2. *Finish tiles & grout (`Чистовая отделка / Материалы`):* porcelain tiles (m²), waterproof grout.
+  3. *Tile adhesive / dry mixes (`Черновая отделка / Материалы`):* C1/C2 adhesive bags, primer.
+  4. *Tile tools & consumables (`Инструмент и расходники`):* leveling clips/wedges (СВП), spacers, trowels.
+- **Handling loyalty / promo discounts:**
+  - Order forms show base catalog prices; cash register receipts reflect the discounted total.
+  - Calculate proportional line-item discount so that:
+    $$\sum \text{Market} = \text{Order Base}, \quad \sum \text{Fact} = \text{Receipt Paid}, \quad \sum \text{Savings} = \text{Discount}$$
+  - Log base price in Column E, actual paid in Column F, and exact discount breakdown in notes.
+- **Always update summary sheet `SUMIF` formula ranges:**
+  When inserting $M$ new rows in `Факт расходов`, the `SUMIF` criteria ranges in `Экономика и Сводка` (e.g. `C5:C37` and `F5:F37`) MUST be expanded to `C5:C{new_last_data_row}` and `F5:F{new_last_data_row}` across both local `.xlsx` files and Google Sheets. In Google Sheets `ru_RU` locale, ensure all `SUMIF` calls use semicolons `;` (e.g. `=SUMIF('Факт расходов'!C5:C41; "*Сантехника*"; 'Факт расходов'!F5:F41)`).
 
 ### 6. Obsidian markdown
 

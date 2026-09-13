@@ -21,6 +21,8 @@ On OpenRouter, pricing changes periodically (e.g., promotional discounts expire)
 - **`deepseek/deepseek-v4-flash-0731`** or **`deepseek/deepseek-v4-pro`**:
   - Unmatched Python syntax precision, schema compliance, and low cost for background skill curation and internal tools.
   - Note: Not recommended as conversational fallback for general multi-turn reasoning and tool use.
+- **`deepseek/deepseek-v4.1-flash` (Pitfall)**:
+  - Supports 1M context and reasoning, but spends significant token budget on reasoning before generating visible content. If `max_tokens` is bounded or OpenRouter is congested, it results in timeouts or empty content (`content: None`). Do NOT use as user-facing dialogue model.
 
 ### 4. Robust Conversational Fallback Chain
 When primary `google/gemini-3.7-flash` balance runs out or rate-limits, Hermes automatically cascades to:

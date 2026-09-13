@@ -8,4 +8,4 @@ User (Алексей) общается на русском в Telegram и Hermes
 §
 Персонализирует Hermes через SOUL.md (характер, профессионализм), инфу о себе добавляет постепенно. Якорную первую строку SOUL.md не трогать.
 §
-После плановых cron-задач писать результаты и статус. Браузер: Vivaldi (Chrome только для WB). Любит обе части игры The Last of Us. Хобби: YT-канал @AloneSoundLab (dark ambient, Kling/Veo, Suno, DaVinci).
+После cron писать статус. Браузер: Vivaldi (Chrome для WB). Любит The Last of Us. YT @AloneSoundLab (dark ambient, Kling/Veo, Suno, DaVinci). Vivaldi CDP (9222): работать ТОЛЬКО во вкладке Hermes (localhost:3000 / Hermes Agent); остальные вкладки личные — табу: не читать, не переключаться.
