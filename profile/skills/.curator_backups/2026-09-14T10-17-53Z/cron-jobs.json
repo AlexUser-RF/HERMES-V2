@@ -29,7 +29,7 @@
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-09T18:41:06.729530+03:00",
-      "next_run_at": "2026-09-16T23:00:00+03:00",
+      "next_run_at": "2026-09-14T23:00:00+03:00",
       "last_run_at": "2026-09-13T23:01:18.095742+03:00",
       "last_status": "ok",
       "last_error": null,
@@ -38,15 +38,12 @@
       "origin": null,
       "enabled_toolsets": null,
       "workdir": null,
-      "fire_claim": {
-        "at": "2026-09-14T23:00:35.962563+03:00",
-        "by": "WIN-EHB031480DQ:13684:ea98fcb81b5f4c48bfd02aa63d2c6293"
-      },
+      "fire_claim": null,
       "failure_streak": 0,
       "last_dispatch": {
-        "scheduled_at": "2026-09-14T23:00:00+03:00",
-        "dispatched_at": "2026-09-14T23:00:35.838054+03:00",
-        "lateness_seconds": 35.8,
+        "scheduled_at": "2026-09-13T23:00:00+03:00",
+        "dispatched_at": "2026-09-13T23:00:23.852179+03:00",
+        "lateness_seconds": 23.9,
         "kind": "on_time"
       }
     },
@@ -219,15 +216,15 @@
       "schedule_display": "0 */4 * * *",
       "repeat": {
         "times": null,
-        "completed": 2
+        "completed": 1
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-09-14T00:31:48.788026+03:00",
-      "next_run_at": "2026-09-15T00:00:00+03:00",
-      "last_run_at": "2026-09-14T20:22:26.072788+03:00",
+      "next_run_at": "2026-09-14T16:00:00+03:00",
+      "last_run_at": "2026-09-14T12:19:45.063923+03:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -238,13 +235,13 @@
       "enabled_toolsets": null,
       "workdir": null,
       "last_dispatch": {
-        "scheduled_at": "2026-09-14T16:00:00+03:00",
-        "dispatched_at": "2026-09-14T20:22:00.856976+03:00",
-        "lateness_seconds": 15720.9,
+        "scheduled_at": "2026-09-14T04:00:00+03:00",
+        "dispatched_at": "2026-09-14T12:18:52.234168+03:00",
+        "lateness_seconds": 29932.2,
         "kind": "catch_up"
       },
       "fire_claim": null
     }
   ],
-  "updated_at": "2026-09-14T23:00:35.964193+03:00"
+  "updated_at": "2026-09-14T12:19:45.065937+03:00"
 }
