@@ -23,6 +23,15 @@ Operational playbook for Alexey's local Hermes installation. Covers the two stan
 - Backup working copy: `~/hermes-backup` (git repo, remote = `https://github.com/AlexUser-RF/HERMES.git`)
 - Backup script: `~/AppData/Local/hermes/scripts/backup_hermes.sh` — cron job `hermes-profile-backup` (no_agent, watchdog)
 - Workspace clone: `~/hermes-workspace`; user work folder: `D:\HERMES FILES` (desktop project "HERMES FILES", `terminal.cwd`)
+- Standard root directory taxonomy in `D:\HERMES FILES`:
+  - `01_Недвижимость/` — Active flipping projects (`Фрунзе_17/`)
+  - `02_Wildberries_Kружки/` — WB mugs brand Галерея 17 (scripts in `01_Скрипты/`, media in `02_Медиа_и_тесты/`)
+  - `03_Divine_Element/` — Brand archive/standby
+  - `04_AloneSoundLab_YouTube/` — YouTube automation & media
+  - `04_Документы/` — Personal & legal documents (`Страхование_и_авто/`)
+  - `05_Черновики/` — Scratch scripts and temporary setups
+  - `HERMES OBSIDIAN/` — Personal and project knowledge base vault
+  - `.hermes/` — System settings, prompt briefs, attachment caches
 - Git auth: `~/.git-credentials` via `credential.helper store` (user `AlexUser-RF`, PAT with `repo` scope)
 - Google OAuth: token at `~/AppData/Local/hermes/google_token.json` — excluded from backups
 

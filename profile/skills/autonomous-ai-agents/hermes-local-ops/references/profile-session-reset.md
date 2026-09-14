@@ -22,7 +22,14 @@ When Telegram context grows too large (e.g. hundreds of messages in DM chat `242
 - **Direct in-chat command**: send `/new` or `/reset` in Telegram DM. The gateway starts a clean session immediately.
 - **System reset via SQLite**: target the main profile's `state.db` (or profile state if routed). Find session via `SELECT id FROM sessions WHERE source = 'telegram' AND chat_id = ?`, delete its messages from `messages`, delete the session row, and rebuild FTS5 indexes. Keep `channel_directory.json` and gateway configurations untouched.
 
-### 2. Session Reset Procedure (Safe Pattern)
+### 2. Multi-Profile Desktop & Gateway Reset Nuance
+- When resetting conversational context for secondary bot profiles (e.g. `flipping` or `gallery17`), user desktop chat sessions in that profile are tagged with `source = 'desktop'`, not `'telegram'`. Always inspect `SELECT id, source, message_count FROM sessions` across the profile's `state.db` before deciding which records to purge.
+- Always check and purge accumulated request dump JSON files under `$LOCALAPPDATA/hermes/profiles/<profile>/sessions/request_dump_*.json` in the same cleanup pass; leaving hundreds of request dumps degrades startup latency.
+
+### 3. Session Reset Procedure (Safe Pattern)
+
+> **Execution Speed Rule (Zero-Overhead Reset):**
+> When the user asks to clear context / reset sessions for a profile, execute the reset IMMEDIATELY without wandering into open-ended codebase exploration, grep for helper scripts, or searching internal test fixtures. The DB location and query pattern are fixed and known. Do not spend multiple tool turns investigating past backup scripts — run the backup + SQL wipe directly.
 
 1. **Backup State DB first**:
    ```bash

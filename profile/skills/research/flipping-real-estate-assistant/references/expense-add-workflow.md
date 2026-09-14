@@ -116,6 +116,20 @@ When processing a retail store receipt containing mixed trades (e.g. plumbing + 
 - **Always update summary sheet `SUMIF` formula ranges:**
   When inserting $M$ new rows in `Факт расходов`, the `SUMIF` criteria ranges in `Экономика и Сводка` (e.g. `C5:C37` and `F5:F37`) MUST be expanded to `C5:C{new_last_data_row}` and `F5:F{new_last_data_row}` across both local `.xlsx` files and Google Sheets. In Google Sheets `ru_RU` locale, ensure all `SUMIF` calls use semicolons `;` (e.g. `=SUMIF('Факт расходов'!C5:C41; "*Сантехника*"; 'Факт расходов'!F5:F41)`).
 
+### 5.2. Material Catalog & Ready-to-Order Sheets (Procurement Database)
+
+When adding or updating dedicated procurement/catalog sheets (e.g. `База материалов (Комплектация)`):
+- **Strict Verification of Line Items (No Hallucinations):** Every item, price, and barcode/article must originate from real inspected receipts, approved design specs, or verified supplier links. NEVER invent placeholder prices, fictitious supplier names, or rough guesstimates to fill out rows without explicit user sign-off.
+- **Formula Formatting & Syntax in Russian Locale (`ru_RU`):**
+  - Hyperlinks: `=HYPERLINK("https://..."; "Текст ссылки")` (semicolon `;`, double quotes `"`).
+  - Row calculations: `=G5*H5` (straight numeric multiplication without commas in values).
+  - Category totals: `=SUM(I5:I40)` with standard ASCII uppercase formula names.
+- **Mandatory Post-Update Verification Pass:**
+  Immediately after pushing rows via `values.update` or modifying `.xlsx`:
+  1. Perform a read-back check on the updated range via Google Sheets API or `openpyxl`.
+  2. Inspect calculated cell values for formula error strings (`#ERROR!`, `#VALUE!`, `#REF!`, `#NAME?`, `#DIV/0!`).
+  3. Reconcile category sums against the master estimate/fact ledger before confirming task completion.
+
 ### 6. Obsidian markdown
 
 Edit the table in `Смета_и_факт_расходов.md`. The table format:
