@@ -1,0 +1,44 @@
+{
+  "bundle_hash": "sha256:371f4f1ee3e78770e325c69f4ef2042eb42893b6d8f1f446f266b50dc61b4d49",
+  "scanner_version": "skills-guard-v5",
+  "source": "official",
+  "source_url": "official/health/fitness-nutrition",
+  "verdict": "dangerous",
+  "trust_level": "builtin",
+  "findings": [
+    {
+      "pattern_id": "env_exfil_curl",
+      "severity": "critical",
+      "category": "exfiltration",
+      "file": "SKILL.md",
+      "line": 169,
+      "match": "curl -s \"https://api.nal.usda.gov/fdc/v1/foods/search?api_key=${API_KEY}&query=${ENCODED}&pageSize=5&dataType=Foundat...",
+      "description": "curl command interpolating secret environment variable"
+    },
+    {
+      "pattern_id": "env_exfil_curl",
+      "severity": "critical",
+      "category": "exfiltration",
+      "file": "SKILL.md",
+      "line": 190,
+      "match": "curl -s \"https://api.nal.usda.gov/fdc/v1/food/${FDC_ID}?api_key=${API_KEY}\" \\",
+      "description": "curl command interpolating secret environment variable"
+    },
+    {
+      "pattern_id": "python_environ_get_secret",
+      "severity": "medium",
+      "category": "exfiltration",
+      "file": "scripts\\nutrition_search.py",
+      "line": 20,
+      "match": "API_KEY = os.environ.get(\"USDA_API_KEY\", \"DEMO_KEY\")",
+      "description": "reads secret via os.environ.get() (normal API-key access; informational)"
+    }
+  ],
+  "rules": [
+    "env_exfil_curl",
+    "python_environ_get_secret"
+  ],
+  "scanned_at": "2026-09-20T17:18:43.333297+00:00",
+  "summary": "fitness-nutrition: dangerous \u2014 3 finding(s) in exfiltration",
+  "fresh": true
+}

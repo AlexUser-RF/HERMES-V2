@@ -1,6 +1,6 @@
 ---
 name: hermes-local-ops
-description: "Local Hermes ops: profile backup, gateway API, Workspace."
+description: "Local Hermes ops: profile backup, session/context reset, gateway API, Workspace."
 version: 1.0.0
 author: Hermes Agent
 license: MIT
@@ -29,6 +29,7 @@ Operational playbook for Alexey's local Hermes installation. Covers the two stan
   - `03_Divine_Element/` — Brand archive/standby
   - `04_AloneSoundLab_YouTube/` — YouTube automation & media
   - `04_Документы/` — Personal & legal documents (`Страхование_и_авто/`)
+  - `05_Фитнес/` — Fitness, workout tracking & nutrition (`01_Замеры_и_Аналитика/`, `02_Программы_тренировок/`, `03_Питание_и_БЖУ/`, `04_Фото_прогресса/`)
   - `05_Черновики/` — Scratch scripts and temporary setups
   - `HERMES OBSIDIAN/` — Personal and project knowledge base vault
   - `.hermes/` — System settings, prompt briefs, attachment caches
@@ -47,6 +48,12 @@ Operational playbook for Alexey's local Hermes installation. Covers the two stan
 - **Conversational Pacing & Narration (Alexey's Communication Preference)**: Do NOT narrate every step before executing tool calls (e.g. avoid robotic "Что я сейчас сделаю / What I will do now" preambles before each action). Take action directly, execute silently, and report the distilled, actionable result. Only pause to inform Alexey in advance when an operation requires explicit user approval, runs a destructive/irreversible command, or changes shared state.
 - **DeepSeek Reasoning Models on OpenRouter (`deepseek-v4.1-flash`)**: DeepSeek V4.1 Flash outputs Chain-of-Thought into a separate reasoning stream. If invoked with low `max_tokens` (e.g. <=1000) or during peak latency periods, it exhausts the token budget on reasoning alone (`content: None`) or times out on OpenRouter read queues. Never set as primary conversational driver; use Gemini Flash (`gemini-3.7-flash` / `gemini-3.8-flash`) for snappy user-facing turns.
 - **Windows `hermes update` venv lock**: When Desktop app or other profile backends (`serve`) are running, `hermes update --yes` can fail with locked `.pyd` files. Use `hermes update --yes --force-venv` if running from inside the agent, or restart the gateway service afterwards with `hermes gateway restart` to ensure complete recovery.
+- **Windows SCM service enumeration (`win_service_iter`) during update**: On Windows, services with corrupted/missing MUI resources (e.g. `IsolationSession`) throw `OSError: [WinError 15100]` on `QueryServiceConfigW` / `service.binpath()`. In `hermes_cli/gateway.py:find_windows_gateway_services()`, service inspection must catch `(psutil.Error, OSError)`, not just `psutil.AccessDenied`, otherwise `hermes update` crashes with `RuntimeError: Could not determine Windows gateway service ownership: SCM service enumeration failed`.
+- **Specialist Profile Creation Pattern**: When spawning a dedicated expert profile (e.g. `coach`):
+  1. Create via `hermes profile create --clone-from default --description "..." <name>`. Clones base config, SOUL, and skills while omitting messaging channels (prevents duplicate Telegram bot token collisions).
+  2. Copy `$LOCALAPPDATA/hermes/auth.json` to `$LOCALAPPDATA/hermes/profiles/<name>/auth.json` so provider API keys work out of the box without interactive setup.
+  3. Specialize `$LOCALAPPDATA/hermes/profiles/<name>/SOUL.md` and `memories/MEMORY.md`, preserving the line 1 anchor in `SOUL.md`.
+- **Mechanical tasks & context resets — Zero-Overhead Execution**: On mechanical operations (clearing session context, resetting state.db, file rotation), NEVER initiate exploratory codebase searches (`search_files`, test audits). Apply the fixed DB backup + SQL wipe pattern immediately in one step.
 
 ## Safe Update Workflow on Windows (Full Cycle)
 

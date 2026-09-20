@@ -1,0 +1,13 @@
+{
+  "bundle_hash": "sha256:9506c6cba430daae21d92a72740f1c00b36c783ee374ad61103e8e956bf570aa",
+  "scanner_version": "skills-guard-v5",
+  "source": "official",
+  "source_url": "official/creative/ip-as-logo",
+  "verdict": "safe",
+  "trust_level": "builtin",
+  "findings": [],
+  "rules": [],
+  "scanned_at": "2026-09-20T17:13:29.907771+00:00",
+  "summary": "ip-as-logo: clean scan, no threats detected",
+  "fresh": true
+}

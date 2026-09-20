@@ -50,6 +50,222 @@
       },
       "installed_at": "2026-09-09T08:58:03.488042+00:00",
       "updated_at": "2026-09-09T08:58:03.488042+00:00"
+    },
+    "mono-color": {
+      "source": "official",
+      "identifier": "official/creative/mono-color",
+      "trust_level": "builtin",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:8f99bbd8f1ee9f7d",
+      "install_path": "creative/mono-color",
+      "files": [
+        "LICENSE.txt",
+        "SKILL.md",
+        "design-system\\carriers.json",
+        "design-system\\colors.json",
+        "design-system\\compositions.json",
+        "design-system\\imperfections.json",
+        "design-system\\rhythm.json",
+        "design-system\\typography.json",
+        "references\\composition.md",
+        "references\\quality-gate.md",
+        "references\\visual-language.md"
+      ],
+      "metadata": {},
+      "scan_provenance": {
+        "bundle_hash": "sha256:8f99bbd8f1ee9f7d4e963ad58a36ebdae37c4357b2ce550d398809c888a1b32f",
+        "scanner_version": "skills-guard-v5",
+        "source": "official",
+        "source_url": "official/creative/mono-color",
+        "verdict": "safe",
+        "trust_level": "builtin",
+        "findings": [],
+        "rules": [],
+        "scanned_at": "2026-09-20T17:13:26.382465+00:00",
+        "summary": "mono-color: clean scan, no threats detected",
+        "fresh": true
+      },
+      "installed_at": "2026-09-20T17:13:26.414413+00:00",
+      "updated_at": "2026-09-20T17:13:26.414413+00:00"
+    },
+    "ip-as-logo": {
+      "source": "official",
+      "identifier": "official/creative/ip-as-logo",
+      "trust_level": "builtin",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:9506c6cba430daae",
+      "install_path": "creative/ip-as-logo",
+      "files": [
+        "LICENSE",
+        "SKILL.md"
+      ],
+      "metadata": {},
+      "scan_provenance": {
+        "bundle_hash": "sha256:9506c6cba430daae21d92a72740f1c00b36c783ee374ad61103e8e956bf570aa",
+        "scanner_version": "skills-guard-v5",
+        "source": "official",
+        "source_url": "official/creative/ip-as-logo",
+        "verdict": "safe",
+        "trust_level": "builtin",
+        "findings": [],
+        "rules": [],
+        "scanned_at": "2026-09-20T17:13:29.907771+00:00",
+        "summary": "ip-as-logo: clean scan, no threats detected",
+        "fresh": true
+      },
+      "installed_at": "2026-09-20T17:13:29.931872+00:00",
+      "updated_at": "2026-09-20T17:13:29.931872+00:00"
+    },
+    "scrollcraft": {
+      "source": "official",
+      "identifier": "official/web-development/scrollcraft",
+      "trust_level": "builtin",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:57667a0ac8ce1a6a",
+      "install_path": "web-development/scrollcraft",
+      "files": [
+        "LICENSE.txt",
+        "SKILL.md",
+        "engine\\scrollcraft.css",
+        "engine\\scrollcraft.js",
+        "references\\assets.md",
+        "references\\device-diag.html",
+        "references\\devices.md",
+        "references\\feel.md",
+        "references\\taste.md",
+        "references\\template.html",
+        "references\\uniqueness.md",
+        "references\\verify.md",
+        "references\\worldflight.md",
+        "references\\worlds.md",
+        "scripts\\doctor.mjs",
+        "scripts\\encode.sh",
+        "scripts\\kie.mjs",
+        "scripts\\serve.mjs",
+        "scripts\\shoot.mjs",
+        "scripts\\workspace.mjs",
+        "scripts\\worldflight-assert.mjs",
+        "templates\\FINGERPRINTS.md"
+      ],
+      "metadata": {},
+      "scan_provenance": {
+        "bundle_hash": "sha256:57667a0ac8ce1a6ac03f8d1f8e2be626cb5a90dc246517cd00f4c17e56d16b22",
+        "scanner_version": "skills-guard-v5",
+        "source": "official",
+        "source_url": "official/web-development/scrollcraft",
+        "verdict": "safe",
+        "trust_level": "builtin",
+        "findings": [
+          {
+            "pattern_id": "unpinned_npm_install",
+            "severity": "medium",
+            "category": "supply_chain",
+            "file": "SKILL.md",
+            "line": 229,
+            "match": "- `scripts/shoot.mjs` needs Playwright (`npm install playwright` or",
+            "description": "npm install without version pinning"
+          }
+        ],
+        "rules": [
+          "unpinned_npm_install"
+        ],
+        "scanned_at": "2026-09-20T17:13:33.036438+00:00",
+        "summary": "scrollcraft: safe — 1 finding(s) in supply_chain",
+        "fresh": true
+      },
+      "installed_at": "2026-09-20T17:13:33.066256+00:00",
+      "updated_at": "2026-09-20T17:13:33.066256+00:00"
+    },
+    "fitness-nutrition": {
+      "source": "official",
+      "identifier": "official/health/fitness-nutrition",
+      "trust_level": "builtin",
+      "scan_verdict": "dangerous",
+      "content_hash": "sha256:371f4f1ee3e78770",
+      "install_path": "health/fitness-nutrition",
+      "files": [
+        "SKILL.md",
+        "references\\FORMULAS.md",
+        "scripts\\body_calc.py",
+        "scripts\\nutrition_search.py"
+      ],
+      "metadata": {},
+      "scan_provenance": {
+        "bundle_hash": "sha256:371f4f1ee3e78770e325c69f4ef2042eb42893b6d8f1f446f266b50dc61b4d49",
+        "scanner_version": "skills-guard-v5",
+        "source": "official",
+        "source_url": "official/health/fitness-nutrition",
+        "verdict": "dangerous",
+        "trust_level": "builtin",
+        "findings": [
+          {
+            "pattern_id": "env_exfil_curl",
+            "severity": "critical",
+            "category": "exfiltration",
+            "file": "SKILL.md",
+            "line": 169,
+            "match": "curl -s \"https://api.nal.usda.gov/fdc/v1/foods/search?api_key=${API_KEY}&query=${ENCODED}&pageSize=5&dataType=Foundat...",
+            "description": "curl command interpolating secret environment variable"
+          },
+          {
+            "pattern_id": "env_exfil_curl",
+            "severity": "critical",
+            "category": "exfiltration",
+            "file": "SKILL.md",
+            "line": 190,
+            "match": "curl -s \"https://api.nal.usda.gov/fdc/v1/food/${FDC_ID}?api_key=${API_KEY}\" \\",
+            "description": "curl command interpolating secret environment variable"
+          },
+          {
+            "pattern_id": "python_environ_get_secret",
+            "severity": "medium",
+            "category": "exfiltration",
+            "file": "scripts\\nutrition_search.py",
+            "line": 20,
+            "match": "API_KEY = os.environ.get(\"USDA_API_KEY\", \"DEMO_KEY\")",
+            "description": "reads secret via os.environ.get() (normal API-key access; informational)"
+          }
+        ],
+        "rules": [
+          "env_exfil_curl",
+          "python_environ_get_secret"
+        ],
+        "scanned_at": "2026-09-20T17:18:43.333297+00:00",
+        "summary": "fitness-nutrition: dangerous — 3 finding(s) in exfiltration",
+        "fresh": true
+      },
+      "installed_at": "2026-09-20T17:18:43.353335+00:00",
+      "updated_at": "2026-09-20T17:18:43.353335+00:00"
+    },
+    "workout-program-designer": {
+      "source": "skills.sh",
+      "identifier": "skills-sh/onewave-ai/claude-skills/workout-program-designer",
+      "trust_level": "community",
+      "scan_verdict": "safe",
+      "content_hash": "sha256:6072f2f0d625eebe",
+      "install_path": "workout-program-designer",
+      "files": [
+        "SKILL.md"
+      ],
+      "metadata": {
+        "source_url": "https://github.com/onewave-ai/claude-skills/tree/97b51478e0c0607a2180a8670d2ef991eba35b24/workout-program-designer",
+        "source_revision": "97b51478e0c0607a2180a8670d2ef991eba35b24"
+      },
+      "scan_provenance": {
+        "bundle_hash": "sha256:6072f2f0d625eebe7be84aab2104f036668c3d4374b1e81d6ea0018f6cedaa5c",
+        "scanner_version": "skills-guard-v5",
+        "source": "skills-sh/onewave-ai/claude-skills/workout-program-designer",
+        "source_url": "https://github.com/onewave-ai/claude-skills/tree/97b51478e0c0607a2180a8670d2ef991eba35b24/workout-program-designer",
+        "verdict": "safe",
+        "trust_level": "community",
+        "findings": [],
+        "rules": [],
+        "scanned_at": "2026-09-20T17:19:53.473479+00:00",
+        "summary": "workout-program-designer: clean scan, no threats detected",
+        "fresh": true
+      },
+      "installed_at": "2026-09-20T17:19:53.492089+00:00",
+      "updated_at": "2026-09-20T17:19:53.492089+00:00"
     }
   }
 }

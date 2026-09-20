@@ -1,0 +1,13 @@
+{
+  "bundle_hash": "sha256:8f99bbd8f1ee9f7d4e963ad58a36ebdae37c4357b2ce550d398809c888a1b32f",
+  "scanner_version": "skills-guard-v5",
+  "source": "official",
+  "source_url": "official/creative/mono-color",
+  "verdict": "safe",
+  "trust_level": "builtin",
+  "findings": [],
+  "rules": [],
+  "scanned_at": "2026-09-20T17:13:26.382465+00:00",
+  "summary": "mono-color: clean scan, no threats detected",
+  "fresh": true
+}

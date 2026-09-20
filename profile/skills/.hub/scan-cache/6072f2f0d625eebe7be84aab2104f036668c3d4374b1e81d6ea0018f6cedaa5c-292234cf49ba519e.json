@@ -1,0 +1,13 @@
+{
+  "bundle_hash": "sha256:6072f2f0d625eebe7be84aab2104f036668c3d4374b1e81d6ea0018f6cedaa5c",
+  "scanner_version": "skills-guard-v5",
+  "source": "skills-sh/onewave-ai/claude-skills/workout-program-designer",
+  "source_url": "https://github.com/onewave-ai/claude-skills/tree/97b51478e0c0607a2180a8670d2ef991eba35b24/workout-program-designer",
+  "verdict": "safe",
+  "trust_level": "community",
+  "findings": [],
+  "rules": [],
+  "scanned_at": "2026-09-20T17:19:53.473479+00:00",
+  "summary": "workout-program-designer: clean scan, no threats detected",
+  "fresh": true
+}
