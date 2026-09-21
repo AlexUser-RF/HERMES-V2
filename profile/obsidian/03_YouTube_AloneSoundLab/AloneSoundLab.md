@@ -1,5 +1,9 @@
 # YouTube Channel: @AloneSoundLab
 
+> [[Главная|🏠 Главная]]
+
+---
+
 **Канал:** [ALONE SOUND LAB (YouTube)](https://www.youtube.com/@AloneSoundLab)  
 **Аккаунт:** `whofeedvi@gmail.com`  
 **Статус API:** Авторизован (OAuth 2.0 Token сохранен и активен).  

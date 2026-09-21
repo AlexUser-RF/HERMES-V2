@@ -8,7 +8,7 @@ Google OAuth (coopmessage.me@gmail.com): ~/AppData/Local/hermes/google_token.jso
 §
 Модели OpenRouter: мозг/зрение gemini-3.8-flash; черн.OCR deepseek-v4-flash-vision-exp; код/субагенты/auxiliary deepseek-v4-flash-0731 (low).
 §
-Стандарт 'Каскад' и анти-залипание: на механические задачи (БД, скрипты, очистка, перенос) — СРАЗУ локальный Python ($0) в 1 шаг без ресёрча исходников и тестов. Gemini Flash + reasoning — строго под сметы, дефектовку, стратегию. Telegram в РФ без VPN молчит: рестартовать hermes gateway.
+Стандарт 'Каскад 10/10' и анти-залипание: 1-3 файла/поиск -> строго native tools; от 4 файлов/таблицы -> прямой локальный Python с тихим выводом (1-3 строки в консоль, сырые данные в файл); execute_code только для связки с toolset; reasoning_effort: high железно закреплен для флиппинга и тренера. Gemini Flash + deep reasoning — неприкосновенны под сметы, дефектовку, тренинг и стратегию. Telegram в РФ без VPN молчит: рестартовать hermes gateway.
 §
 PDF-референсы ремонта: все помещения (вкл. с/у); перепланировку показывать строго после согласования. Цифры и формулы явно сверять между Excel/PDF/Obsidian (база расчета едина).
 §

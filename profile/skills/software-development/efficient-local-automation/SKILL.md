@@ -24,11 +24,12 @@ Do not use this as the primary workflow for expert judgment, design decisions, v
 ## Always-On Rules
 
 - Treat **code-first** as **deterministic-automation-first**, not Python-first.
-- For one or two files and a simple read/search/write, use the native Hermes file tools directly: `read_file`, `search_files`, `write_file`, or `patch`.
-- For many local files, run one pure Python batch with direct filesystem access (`pathlib`, `json`, `csv`, regex, or an already-installed library) and emit a compact result.
+- For one or two files and a simple read/search/write, use the native Hermes file tools directly: `read_file`, `search_files`, `write_file`, or `patch`. Do not invoke Python for 1–3 files; native tool dispatch latency is orders of magnitude lower (0.2–0.5s vs subprocess/kernel overhead).
+- For many local files (4+ files, Excel sheets, large text parsing), run one pure Python batch with direct filesystem access (`pathlib`, `json`, `csv`, regex, or an already-installed library) and emit a compact result.
+- Local Data Spill (quiet stdout): local scripts processing batches must write detailed data/payloads to scratch or project files, returning strictly a 1–3 line summary to stdout (counts, status, anomalies). Never spam raw bulk outputs into tool stdout — bloated context triggers premature context compaction and degrades model reasoning.
 - Never call `read_file`, `search_files`, or `terminal` through RPC inside a Python loop; each bridge call adds serialization, policy, and tool-dispatch overhead and can make the batch slower than native tools.
 - Use `terminal` for shell pipelines, git, package managers, processes, and native CLIs. If Python is needed there, run one prepared script, not dozens of `python -c` subprocesses.
-- Use `execute_code` for in-process calculations, stateful multi-step logic, or a small batch of dependent Hermes-tool calls. Use native parallel tool calls for independent reads instead of serializing them through Python.
+- Use `execute_code` ONLY when the script requires direct in-process interaction with Hermes toolset stubs (e.g. running `web_search` and pre-filtering noisy hits programmatically before returning them to context). For pure local computations and scripts, invoke via `terminal` directly.
 - Keep stdout small: print counts, paths, status, and a short sample; write large results to a file and read it in pages.
 - Prefer one batch over repeated process launches. Reuse the session kernel when state helps, but do not prewarm it for sessions that may not need Python.
 - On Windows, use absolute paths for file operations and `pathlib`; do not rely on shell-specific path conversion.

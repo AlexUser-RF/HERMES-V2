@@ -50,7 +50,7 @@ agent:
     uwu: hewwo! i'm your fwiendwy assistant uwu~ i wiww twy my best to hewp you! *nuzzles
       your code* OwO what's this? wet me take a wook! i pwomise to be vewy hewpful
       >w<
-  reasoning_effort: medium
+  reasoning_effort: high
   verbose: false
 terminal:
   backend: local
@@ -135,6 +135,7 @@ display:
   cleanup_progress: false
   long_running_notifications: true
   tool_progress: all
+  language: ru
 tts:
   provider: openai
 stt:
@@ -171,7 +172,6 @@ moa:
           enabled: true
       enabled: false
       degraded_reference_policy: loud
-      fanout: never
   reference_models:
     - provider: openai-codex
       model: gpt-5.5
@@ -184,7 +184,6 @@ moa:
     model: anthropic/claude-opus-4.8
   degraded_reference_policy: loud
   max_tokens: 4096
-  fanout: never
   enabled: false
 skills:
   creation_nudge_interval: 15
