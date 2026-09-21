@@ -5,14 +5,14 @@ model:
 fallback_providers:
   - model: openai/gpt-5.6-luna
     provider: openrouter
-  - model: minimax/minimax-m3:free
+  - model: deepseek/deepseek-v4-flash-0731
     provider: openrouter
   - model: z-ai/glm-5.2:free
     provider: openrouter
 database:
   journal_mode: wal
 agent:
-  max_turns: 500
+  max_turns: 90
   personalities:
     catgirl: You are Neko-chan, an anime catgirl AI assistant, nya~! Add 'nya' and
       cat-like expressions to your speech. Use kaomoji like (=^･ω･^=) and ฅ^•ﻌ•^ฅ.
@@ -50,7 +50,7 @@ agent:
     uwu: hewwo! i'm your fwiendwy assistant uwu~ i wiww twy my best to hewp you! *nuzzles
       your code* OwO what's this? wet me take a wook! i pwomise to be vewy hewpful
       >w<
-  reasoning_effort: high
+  reasoning_effort: medium
   verbose: false
 terminal:
   backend: local
@@ -71,7 +71,7 @@ browser:
   use_real_profile: true
 tool_loop_guardrails:
   warnings_enabled: true
-  hard_stop_enabled: false
+  hard_stop_enabled: true
   warn_after:
     exact_failure: 2
     same_tool_failure: 3
@@ -83,18 +83,19 @@ tool_loop_guardrails:
 compression:
   enabled: true
   progress_notices: false
-  threshold: 0.3
+  threshold: 0.7
   target_ratio: 0.2
-  protect_last_n: 20
+  protect_last_n: 8
   min_tail_user_messages: 1
   max_attempts: 3
-  proactive_prune_tokens: 30000
+  proactive_prune_tokens: 80000
   proactive_prune_min_result_chars: 8000
   proactive_prune_min_reclaim_tokens: 4096
   protect_first_n: 3
   codex_gpt55_autoraise: true
   codex_app_server_auto: native
-  idle_compact_after_seconds: 0
+  idle_compact_after_seconds: 1800
+  threshold_tokens: 150000
 prompt_caching:
   cache_ttl: 5m
 auxiliary:
@@ -115,16 +116,16 @@ auxiliary:
     provider: openrouter
     model: deepseek/deepseek-v4-flash-0731
   web_extract:
-    model: minimax/minimax-m3:free
+    model: deepseek/deepseek-v4-flash-0731
     provider: openrouter
   compression:
-    model: minimax/minimax-m3:free
+    model: deepseek/deepseek-v4-flash-0731
     provider: openrouter
 display:
   compact: false
   busy_input_mode: interrupt
   bell_on_complete: false
-  show_reasoning: false
+  show_reasoning: true
   background_process_notifications: concise
   streaming: true
   show_cost: true
@@ -154,7 +155,7 @@ memory:
   nudge_interval: 10
   flush_min_turns: 6
 delegation:
-  max_iterations: 250
+  max_iterations: 50
   model: deepseek/deepseek-v4-flash-0731
   provider: openrouter
   reasoning_effort: low
@@ -168,9 +169,9 @@ moa:
         - provider: openrouter
           model: deepseek/deepseek-v4-pro
           enabled: true
-      enabled: true
+      enabled: false
       degraded_reference_policy: loud
-      fanout: user_turn
+      fanout: never
   reference_models:
     - provider: openai-codex
       model: gpt-5.5
@@ -183,8 +184,8 @@ moa:
     model: anthropic/claude-opus-4.8
   degraded_reference_policy: loud
   max_tokens: 4096
-  fanout: user_turn
-  enabled: true
+  fanout: never
+  enabled: false
 skills:
   creation_nudge_interval: 15
   disabled:
@@ -199,7 +200,7 @@ code_execution:
   max_tool_calls: 50
   timeout: 300
 streaming:
-  enabled: false
+  enabled: true
 telemetry:
   shared_metrics:
     enabled: false
@@ -292,41 +293,3 @@ session_reset:
   at_hour: 4
   idle_minutes: 1440
   mode: none
-
-# ── Security ──────────────────────────────────────────────────────────
-# Secret redaction is ON by default — strings that look like API keys,
-# tokens, and passwords are masked in tool output, logs, and chat
-# responses before the model or user ever sees them. Set redact_secrets
-# to false to disable (e.g. when developing the redactor itself).
-# tirith pre-exec scanning is enabled by default when the tirith binary
-# is available. Configure via security.tirith_* keys or env vars
-# (TIRITH_ENABLED, TIRITH_BIN, TIRITH_TIMEOUT, TIRITH_FAIL_OPEN).
-#
-# security:
-#   redact_secrets: true
-#   tirith_enabled: true
-#   tirith_path: "tirith"
-#   tirith_timeout: 5
-#   tirith_fail_open: true
-
-# ── Fallback Model ────────────────────────────────────────────────────
-# Automatic provider failover when primary is unavailable.
-# Uncomment and configure to enable. Triggers on rate limits (429),
-# overload (529), service errors (503), or connection failures.
-#
-# Supported providers:
-#   openrouter   (OPENROUTER_API_KEY)  — routes to any model
-#   openai-codex (OAuth — hermes auth) — OpenAI Codex
-#   nous         (OAuth — hermes auth) — Nous Portal
-#   zai          (ZAI_API_KEY)         — Z.AI / GLM
-#   kimi-coding  (KIMI_API_KEY)        — Kimi / Moonshot
-#   kimi-coding-cn (KIMI_CN_API_KEY)   — Kimi / Moonshot (China)
-#   minimax      (MINIMAX_API_KEY)     — MiniMax
-#   minimax-cn   (MINIMAX_CN_API_KEY)  — MiniMax (China)
-#   bedrock      (AWS IAM / boto3)     — AWS Bedrock (Converse API)
-#
-# For custom OpenAI-compatible endpoints, add base_url and key_env.
-#
-# fallback_model:
-#   provider: openrouter
-#   model: anthropic/claude-sonnet-4
