@@ -22,15 +22,15 @@
       "schedule_display": "0 23 * * 1,3,0",
       "repeat": {
         "times": null,
-        "completed": 31
+        "completed": 32
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-09T18:41:06.729530+03:00",
-      "next_run_at": "2026-09-23T23:00:00+03:00",
-      "last_run_at": "2026-09-21T23:00:38.341130+03:00",
+      "next_run_at": "2026-09-27T23:00:00+03:00",
+      "last_run_at": "2026-09-21T23:45:09.022441+03:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -39,14 +39,14 @@
       "enabled_toolsets": null,
       "workdir": null,
       "fire_claim": {
-        "at": "2026-09-21T23:44:46.464731+03:00",
-        "by": "WIN-EHB031480DQ:12940:62b5a2a2f8be445c89e1566141dbf1f6"
+        "at": "2026-09-23T23:00:31.457483+03:00",
+        "by": "WIN-EHB031480DQ:14872:742e1e98640b4bbea956a3c11b9b69de"
       },
       "failure_streak": 0,
       "last_dispatch": {
-        "scheduled_at": "2026-09-21T23:00:00+03:00",
-        "dispatched_at": "2026-09-21T23:00:22.137418+03:00",
-        "lateness_seconds": 22.1,
+        "scheduled_at": "2026-09-23T23:00:00+03:00",
+        "dispatched_at": "2026-09-23T23:00:31.323011+03:00",
+        "lateness_seconds": 31.3,
         "kind": "on_time"
       }
     },
@@ -219,32 +219,32 @@
       "schedule_display": "0 */4 * * *",
       "repeat": {
         "times": null,
-        "completed": 30
+        "completed": 38
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-09-14T00:31:48.788026+03:00",
-      "next_run_at": "2026-09-22T00:00:00+03:00",
-      "last_run_at": "2026-09-21T20:08:25.840055+03:00",
-      "last_status": "ok",
-      "last_error": null,
+      "next_run_at": "2026-09-24T00:00:00+03:00",
+      "last_run_at": "2026-09-23T20:02:48.679052+03:00",
+      "last_status": "error",
+      "last_error": "Script exited with code 1\nstdout:\n⚠️ ОБНАРУЖЕНЫ РАЗДУТЫЕ СЕССИИ (Риск переплаты за контекст!):\n  • Профиль: [default], Источник: desktop, Сообщений: 227, Входных токенов: 1,869,841 — \"Сравнение новых лун на опен роутере\"\n    Рекомендация: сбросить ветку через /new или системную очистку.",
       "last_delivery_error": null,
       "last_delivery_unverified": null,
-      "failure_streak": 0,
+      "failure_streak": 3,
       "deliver": "local",
       "origin": null,
       "enabled_toolsets": null,
       "workdir": null,
       "last_dispatch": {
-        "scheduled_at": "2026-09-21T20:00:00+03:00",
-        "dispatched_at": "2026-09-21T20:00:16.119064+03:00",
-        "lateness_seconds": 16.1,
-        "kind": "on_time"
+        "scheduled_at": "2026-09-23T16:00:00+03:00",
+        "dispatched_at": "2026-09-23T20:02:31.285660+03:00",
+        "lateness_seconds": 14551.3,
+        "kind": "catch_up"
       },
       "fire_claim": null
     }
   ],
-  "updated_at": "2026-09-21T23:44:46.466255+03:00"
+  "updated_at": "2026-09-23T23:00:31.459687+03:00"
 }
