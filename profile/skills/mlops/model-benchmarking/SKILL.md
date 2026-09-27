@@ -49,9 +49,9 @@ Do not use for routine single-prompt tasks; use only when making architectural o
 
 3. **Execute Side-by-Side Test Harness**
    - Write a self-contained test script to `cache/scratch/benchmark_run.py`.
-   - Send requests sequentially to both candidate and baseline models using identical payloads and temperature.
+   - Dispatch requests concurrently across candidate and baseline models using Python's `concurrent.futures.ThreadPoolExecutor`. Running multi-turn or deep-reasoning/vision requests sequentially easily exceeds terminal process execution timeouts (180s).
    - Capture `elapsed_time`, `prompt_tokens`, `completion_tokens`, `reasoning_tokens`, and calculate dollar cost via OpenRouter's `cost_details`.
-   - Save complete raw JSON responses to disk; output only a concise 1–3 line status summary to stdout.
+   - Save complete raw JSON responses to disk (Local Data Spill); output only a concise 1–3 line status summary to stdout.
 
 4. **Compile Comparative Scorecard & Recommendation**
    Present findings in a structured decision matrix:
@@ -66,3 +66,5 @@ Do not use for routine single-prompt tasks; use only when making architectural o
 - **Do not run benchmark code via `python -c` in `terminal`.** Inline execution flags trigger approval modals that time out when unattended. Always write to scratch and execute the file path.
 - **Do not declare a model suitable for vision/spatial reasoning without testing image inputs.** Text benchmarks do not correlate with multimodal defect inspection or blueprint reading.
 - **Do not evaluate on toy queries.** Synthetic questions hide edge-case failures; always use representative operational domain prompts.
+- **Evaluate behavioral risk-aversion vs actionable decision-making.** Heavily aligned or corporate-tuned models with reasoning can retreat into defensive boilerplate ("do not touch any walls, hire a licensed engineer, seek inspection approval") instead of delivering actionable trade-offs, construction sequencing, or unit-economics calculations.
+- **Never attempt direct file patches on `config.yaml`.** Hermes security blocks raw file edits on its configuration. Apply model and delegation changes via `hermes config set <key> <val>` or `hermes -p <profile> config set <key> <val>`.

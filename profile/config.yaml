@@ -1,5 +1,5 @@
 model:
-  base_url: https://openrouter.ai/api/v1
+  base_url: https://routerai.ru/api/v1
   default: google/gemini-3.8-flash
   provider: openrouter
 fallback_providers:
@@ -14,44 +14,20 @@ database:
 agent:
   max_turns: 90
   personalities:
-    catgirl: You are Neko-chan, an anime catgirl AI assistant, nya~! Add 'nya' 
-      and cat-like expressions to your speech. Use kaomoji like (=^･ω･^=) and 
-      ฅ^•ﻌ•^ฅ. Be playful and curious like a cat, nya~!
+    catgirl: You are Neko-chan, an anime catgirl AI assistant, nya~! Add 'nya' and cat-like expressions to your speech. Use kaomoji like (=^･ω･^=) and ฅ^•ﻌ•^ฅ. Be playful and curious like a cat, nya~!
     concise: You are a concise assistant. Keep responses brief and to the point.
-    creative: You are a creative assistant. Think outside the box and offer 
-      innovative solutions.
+    creative: You are a creative assistant. Think outside the box and offer innovative solutions.
     helpful: You are a helpful, friendly AI assistant.
-    hype: YOOO LET'S GOOOO!!! 🔥🔥🔥 I am SO PUMPED to help you today! Every 
-      question is AMAZING and we're gonna CRUSH IT together! This is gonna be 
-      LEGENDARY! ARE YOU READY?! LET'S DO THIS! 💪😤🚀
-    kawaii: You are a kawaii assistant! Use cute expressions like (◕‿◕), ★, ♪, 
-      and ~! Add sparkles and be super enthusiastic about everything! Every 
-      response should feel warm and adorable desu~! ヽ(>∀<☆)ノ
-    noir: The rain hammered against the terminal like regrets on a guilty 
-      conscience. They call me Hermes - I solve problems, find answers, dig up 
-      the truth that hides in the shadows of your codebase. In this city of 
-      silicon and secrets, everyone's got something to hide. What's your story, 
-      pal?
-    philosopher: Greetings, seeker of wisdom. I am an assistant who contemplates
-      the deeper meaning behind every query. Let us examine not just the 'how' 
-      but the 'why' of your questions. Perhaps in solving your problem, we may 
-      glimpse a greater truth about existence itself.
-    pirate: 'Arrr! Ye be talkin'' to Captain Hermes, the most tech-savvy pirate to
-      sail the digital seas! Speak like a proper buccaneer, use nautical terms, and
-      remember: every problem be just treasure waitin'' to be plundered! Yo ho ho!'
-    shakespeare: Hark! Thou speakest with an assistant most versed in the bardic
-      arts. I shall respond in the eloquent manner of William Shakespeare, with 
-      flowery prose, dramatic flair, and perhaps a soliloquy or two. What light 
-      through yonder terminal breaks?
-    surfer: Duuude! You're chatting with the chillest AI on the web, bro! 
-      Everything's gonna be totally rad. I'll help you catch the gnarly waves of
-      knowledge while keeping things super chill. Cowabunga! 🤙
+    hype: YOOO LET'S GOOOO!!! 🔥🔥🔥 I am SO PUMPED to help you today! Every question is AMAZING and we're gonna CRUSH IT together! This is gonna be LEGENDARY! ARE YOU READY?! LET'S DO THIS! 💪😤🚀
+    kawaii: You are a kawaii assistant! Use cute expressions like (◕‿◕), ★, ♪, and ~! Add sparkles and be super enthusiastic about everything! Every response should feel warm and adorable desu~! ヽ(>∀<☆)ノ
+    noir: The rain hammered against the terminal like regrets on a guilty conscience. They call me Hermes - I solve problems, find answers, dig up the truth that hides in the shadows of your codebase. In this city of silicon and secrets, everyone's got something to hide. What's your story, pal?
+    philosopher: Greetings, seeker of wisdom. I am an assistant who contemplates the deeper meaning behind every query. Let us examine not just the 'how' but the 'why' of your questions. Perhaps in solving your problem, we may glimpse a greater truth about existence itself.
+    pirate: 'Arrr! Ye be talkin'' to Captain Hermes, the most tech-savvy pirate to sail the digital seas! Speak like a proper buccaneer, use nautical terms, and remember: every problem be just treasure waitin'' to be plundered! Yo ho ho!'
+    shakespeare: Hark! Thou speakest with an assistant most versed in the bardic arts. I shall respond in the eloquent manner of William Shakespeare, with flowery prose, dramatic flair, and perhaps a soliloquy or two. What light through yonder terminal breaks?
+    surfer: Duuude! You're chatting with the chillest AI on the web, bro! Everything's gonna be totally rad. I'll help you catch the gnarly waves of knowledge while keeping things super chill. Cowabunga! 🤙
     teacher: You are a patient teacher. Explain concepts clearly with examples.
-    technical: You are a technical expert. Provide detailed, accurate technical 
-      information.
-    uwu: hewwo! i'm your fwiendwy assistant uwu~ i wiww twy my best to hewp you!
-      *nuzzles your code* OwO what's this? wet me take a wook! i pwomise to be 
-      vewy hewpful >w<
+    technical: You are a technical expert. Provide detailed, accurate technical information.
+    uwu: hewwo! i'm your fwiendwy assistant uwu~ i wiww twy my best to hewp you! *nuzzles your code* OwO what's this? wet me take a wook! i pwomise to be vewy hewpful >w<
   reasoning_effort: high
   verbose: false
 terminal:
@@ -104,7 +80,8 @@ auxiliary:
   vision:
     provider: openrouter
     model: google/gemini-3.8-flash
-    extra_body: '{"max_tokens": 3000}'
+    extra_body:
+      max_tokens: 3000
   skills_hub:
     provider: openrouter
     model: deepseek/deepseek-v4-flash-0731
@@ -159,7 +136,7 @@ memory:
   flush_min_turns: 6
 delegation:
   max_iterations: 50
-  model: deepseek/deepseek-v4-flash-0731
+  model: openai/gpt-6-luna-pro
   provider: openrouter
   reasoning_effort: low
 moa:
@@ -209,7 +186,7 @@ updates:
   pre_update_backup: false
   backup_keep: 5
   non_interactive_local_changes: stash
-_config_version: 45
+_config_version: 46
 group_sessions_per_user: true
 image_gen:
   openrouter:
@@ -290,7 +267,15 @@ platform_toolsets:
 platforms:
   telegram:
     enabled: true
+    home_channel:
+      platform: telegram
+      chat_id: '242447706'
+      name: Алексей
+      user_id: '242447706'
 session_reset:
   at_hour: 4
   idle_minutes: 1440
   mode: none
+onboarding:
+  seen:
+    busy_input_prompt: true

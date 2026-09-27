@@ -6,7 +6,7 @@ Google OAuth (coopmessage.me@gmail.com): ~/AppData/Local/hermes/google_token.jso
 §
 Флиппинг: Тула, Фрунзе 17, 2к 43.2м², 5/5, кирп 1966. Куплена 3.9М; ремонт 620-650к; цель 5.6М. План: прихожая 2.5, с/у СОВМ. 2.9, кухня 6.0 (ГАЗ), зал 18.5 (балкон), спальня 12.6, темная 2.5. Стиль: Тёплый Сканди/Кинфолк (греж F497/RAL7047, светлый дуб, белый плинтус 80мм, черный металл). Референсы стиля строго без навязывания перепланировок.
 §
-Модели OpenRouter: мозг/зрение gemini-3.8-flash; черн.OCR deepseek-v4-flash-vision-exp; код/субагенты/auxiliary deepseek-v4-flash-0731 (low).
+Модели OpenRouter: мозг/зрение gemini-3.8-flash; черн.OCR deepseek-v4-flash-vision-exp; субагенты/делегация openai/gpt-6-luna-pro; auxiliary deepseek-v4-flash-0731; профиль WB Галерея 17 на gpt-6-luna-pro.
 §
 Стандарт 'Каскад 10/10' и анти-залипание: 1-3 файла/поиск -> строго native tools; от 4 файлов/таблицы -> прямой локальный Python с тихим выводом (1-3 строки в консоль, сырые данные в файл); execute_code только для связки с toolset; reasoning_effort: high железно закреплен для флиппинга и тренера. Gemini Flash + deep reasoning — неприкосновенны под сметы, дефектовку, тренинг и стратегию. Telegram в РФ без VPN молчит: рестартовать hermes gateway.
 §

@@ -23,6 +23,22 @@ When Telegram context grows too large (e.g. hundreds of messages in DM chat `242
 - **System reset via SQLite**: target the main profile's `state.db` (or profile state if routed). Find session via `SELECT id FROM sessions WHERE source = 'telegram' AND chat_id = ?`, delete its messages from `messages`, delete the session row, and rebuild FTS5 indexes. Keep `channel_directory.json` and gateway configurations untouched.
 
 ### 2. Multi-Profile Desktop & Gateway Reset Nuance
+- **Desktop Bot Mode Notice («This chat never resets»)**:
+  - В десктопном приложении Hermes при открытии чата с ботом (вкладка Bots) отображается уведомление: *«This chat never resets. Bot chats are one continuous conversation — compacting instead. For a throwaway session with this bot, use Sessions mode.»*
+  - Команды `/new` и `/reset`, отправленные внутри десктопного чата в режиме Bots, интерфейс не сбрасывают (диалог трактуется как непрерывный с автоматической компрессией).
+  - Когда пользователь говорит «очисти контекст в боте [профиль]» или «очисти контекст во всех ботах/чатах», он ждет не советов по UI или команды `/compress`, а **прямого программного сброса контекста (Zero-Overhead Reset)** через бэкап и очистку `state.db`.
+- **Global Context Reset ("Очисть контекст во всех чатах и ботах")**:
+  - При запросе сбросить контекст везде: итерировать по списку всех профилей (`profiles/coach`, `profiles/divine-element`, `profiles/flipping`, `profiles/gallery17`, `profiles/realty-scout`), бэкапить и очищать `state.db` каждого бота.
+  - В корневом профиле (`default`) при очистке старых сессий **всегда сохранять текущую активную сессию**, из которой ведётся диалог (иначе прервётся текущий контекст взаимодействия с пользователем).
+- **Desktop UI Reset for the Active Session ("Сделай сам" / UI-Side Session Switch)**:
+  - Очистка `state.db` на диске обнуляет историю базы данных, но запущенный интерфейс Electron/Desktop держит в памяти активное состояние текущего окна и композера.
+  - Если пользователь просит сбросить контекст прямо в текущем чате и требует сделать это автоматически («Сделай сам», «сделай это сейчас» без ручного нажатия `Ctrl+N` / New Chat):
+    - Сначала обнулить `state.db` (с бэкапом).
+    - Затем программно активировать окно Hermes и послать хоткей `Ctrl+N` через PowerShell:
+      ```bash
+      powershell -NoProfile -Command '$wshell = New-Object -ComObject wscript.shell; if ($wshell.AppActivate("Hermes")) { Start-Sleep -Milliseconds 250; $wshell.SendKeys("^n"); "Sent Ctrl+N" } else { "Hermes window not found" }'
+      ```
+    - Это переключает UI на чистый черновик сессии без необходимости ручных кликов со стороны пользователя.
 - When resetting conversational context for secondary bot profiles (e.g. `flipping` or `gallery17`), user desktop chat sessions in that profile are tagged with `source = 'desktop'`, not `'telegram'`. Always inspect `SELECT id, source, message_count FROM sessions` across the profile's `state.db` before deciding which records to purge.
 - Always check and purge accumulated request dump JSON files under `$LOCALAPPDATA/hermes/profiles/<profile>/sessions/request_dump_*.json` in the same cleanup pass; leaving hundreds of request dumps degrades startup latency.
 
