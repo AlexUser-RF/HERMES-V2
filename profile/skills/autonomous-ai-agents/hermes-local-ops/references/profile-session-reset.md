@@ -23,6 +23,15 @@ When Telegram context grows too large (e.g. hundreds of messages in DM chat `242
 - **System reset via SQLite**: target the main profile's `state.db` (or profile state if routed). Find session via `SELECT id FROM sessions WHERE source = 'telegram' AND chat_id = ?`, delete its messages from `messages`, delete the session row, and rebuild FTS5 indexes. Keep `channel_directory.json` and gateway configurations untouched.
 
 ### 2. Multi-Profile Desktop & Gateway Reset Nuance
+- **Bot Mode / In-App Bot Chats («This chat never resets» / Команда не работает)**:
+  - В бот-чатах десктопного интерфейса Hermes (вкладка Bots) и привязанных сессиях команда `/new` не сбрасывает диалог («This chat never resets...»). Попытка отправлять `/new` в боте воспринимается как обычный пользовательский текст и ничего не обнуляет.
+  - Если пользователь пишет «очисть контекст во флиппинге [или другом боте]» и на встречные предложения/инструкции отвечает «Сделай сам, в боте команда не работает»:
+    1. Не предлагать повторно нажать кнопки или ввести `/new`.
+    2. Мгновенно определить целевой профиль бота (например, `profiles/flipping/state.db`).
+    3. Создать бэкап `state.db` в `desktop-backups/`.
+    4. Выполнить SQL-очистку таблиц `messages`, `sessions`, `session_model_usage`, `system_prompts`, перестроить FTS (`INSERT INTO ... VALUES('rebuild')`) и сделать `VACUUM`.
+    5. Удалить временные дампы `sessions/request_dump_*.json`.
+    6. Кратко доложить результат (сколько сообщений очищено, файл бэкапа сохранён).
 - **Desktop Bot Mode Notice («This chat never resets»)**:
   - В десктопном приложении Hermes при открытии чата с ботом (вкладка Bots) отображается уведомление: *«This chat never resets. Bot chats are one continuous conversation — compacting instead. For a throwaway session with this bot, use Sessions mode.»*
   - Команды `/new` и `/reset`, отправленные внутри десктопного чата в режиме Bots, интерфейс не сбрасывают (диалог трактуется как непрерывный с автоматической компрессией).
