@@ -29,7 +29,7 @@
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-09T18:41:06.729530+03:00",
-      "next_run_at": "2026-09-28T23:00:00+03:00",
+      "next_run_at": "2026-09-30T23:00:00+03:00",
       "last_run_at": "2026-09-23T23:01:48.420043+03:00",
       "last_status": "ok",
       "last_error": null,
@@ -39,15 +39,15 @@
       "enabled_toolsets": null,
       "workdir": null,
       "fire_claim": {
-        "at": "2026-09-27T23:00:35.117376+03:00",
-        "by": "WIN-EHB031480DQ:18416:5361cbc5ff5e4abda394a2ea91ec6f8e"
+        "at": "2026-09-29T09:43:58.886718+03:00",
+        "by": "WIN-EHB031480DQ:15724:1051f20b093b4efcaf54201d11ba2cc4"
       },
       "failure_streak": 0,
       "last_dispatch": {
-        "scheduled_at": "2026-09-27T23:00:00+03:00",
-        "dispatched_at": "2026-09-27T23:00:35.038071+03:00",
-        "lateness_seconds": 35.0,
-        "kind": "on_time"
+        "scheduled_at": "2026-09-28T23:00:00+03:00",
+        "dispatched_at": "2026-09-29T09:43:58.544885+03:00",
+        "lateness_seconds": 38638.5,
+        "kind": "catch_up"
       }
     },
     {
@@ -119,15 +119,15 @@
       "schedule_display": "0 10 * * 1",
       "repeat": {
         "times": null,
-        "completed": 6
+        "completed": 7
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-18T23:10:49.159298+03:00",
-      "next_run_at": "2026-09-28T10:00:00+03:00",
-      "last_run_at": "2026-09-21T12:16:28.258735+03:00",
+      "next_run_at": "2026-10-05T10:00:00+03:00",
+      "last_run_at": "2026-09-28T12:30:13.687637+03:00",
       "last_status": "error",
       "last_error": "Script exited with code 1\nstderr:\nОшибка получения моделей с OpenRouter: HTTP Error 403: Forbidden",
       "last_delivery_error": null,
@@ -136,11 +136,11 @@
       "enabled_toolsets": null,
       "workdir": null,
       "fire_claim": null,
-      "failure_streak": 2,
+      "failure_streak": 3,
       "last_dispatch": {
-        "scheduled_at": "2026-09-21T10:00:00+03:00",
-        "dispatched_at": "2026-09-21T12:16:27.458975+03:00",
-        "lateness_seconds": 8187.5,
+        "scheduled_at": "2026-09-28T10:00:00+03:00",
+        "dispatched_at": "2026-09-28T12:30:12.177179+03:00",
+        "lateness_seconds": 9012.2,
         "kind": "catch_up"
       }
     },
@@ -219,32 +219,35 @@
       "schedule_display": "0 */4 * * *",
       "repeat": {
         "times": null,
-        "completed": 54
+        "completed": 57
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-09-14T00:31:48.788026+03:00",
-      "next_run_at": "2026-09-28T00:00:00+03:00",
-      "last_run_at": "2026-09-27T20:00:48.916402+03:00",
-      "last_status": "error",
-      "last_error": "Script exited with code 1\nstdout:\n⚠️ ОБНАРУЖЕНЫ РАЗДУТЫЕ СЕССИИ (Риск переплаты за контекст!):\n  • Профиль: [default], Источник: desktop, Сообщений: 329, Входных токенов: 1,286,586 — \"Готов подключить router AI\"\n    Рекомендация: сбросить ветку через /new или системную очистку.",
+      "next_run_at": "2026-09-29T12:00:00+03:00",
+      "last_run_at": "2026-09-28T18:07:59.360285+03:00",
+      "last_status": "ok",
+      "last_error": null,
       "last_delivery_error": null,
       "last_delivery_unverified": null,
-      "failure_streak": 1,
+      "failure_streak": 0,
       "deliver": "local",
       "origin": null,
       "enabled_toolsets": null,
       "workdir": null,
       "last_dispatch": {
-        "scheduled_at": "2026-09-27T20:00:00+03:00",
-        "dispatched_at": "2026-09-27T20:00:42.939011+03:00",
-        "lateness_seconds": 42.9,
-        "kind": "on_time"
+        "scheduled_at": "2026-09-28T20:00:00+03:00",
+        "dispatched_at": "2026-09-29T09:43:58.544885+03:00",
+        "lateness_seconds": 49438.5,
+        "kind": "catch_up"
       },
-      "fire_claim": null
+      "fire_claim": {
+        "at": "2026-09-29T09:43:58.986800+03:00",
+        "by": "WIN-EHB031480DQ:15724:af7c1d61cd27492a9a00d60ac97a2ca0"
+      }
     }
   ],
-  "updated_at": "2026-09-27T23:00:35.119737+03:00"
+  "updated_at": "2026-09-29T09:43:58.987914+03:00"
 }
