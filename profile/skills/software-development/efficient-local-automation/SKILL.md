@@ -24,6 +24,7 @@ Do not use this as the primary workflow for expert judgment, design decisions, v
 ## Always-On Rules
 
 - Treat **code-first** as **deterministic-automation-first**, not Python-first.
+- **Level 0 (System CLI Fast Cut):** For system inspection, git history, updates, processes, and OS diagnostics, use native terminal CLI commands with bounded output (`git log -n 20 --oneline`, `docker ps`, `status`) costing $0 and 0.2s. Never write ad-hoc Python scripts to parse system logs or git history when an inquiry is a status/update check.
 - For one or two files and a simple read/search/write, use the native Hermes file tools directly: `read_file`, `search_files`, `write_file`, or `patch`. Do not invoke Python for 1–3 files; native tool dispatch latency is orders of magnitude lower (0.2–0.5s vs subprocess/kernel overhead).
 - For many local files (4+ files, Excel sheets, large text parsing), run one pure Python batch with direct filesystem access (`pathlib`, `json`, `csv`, regex, or an already-installed library) and emit a compact result.
 - Local Data Spill (quiet stdout): local scripts processing batches must write detailed data/payloads to scratch or project files, returning strictly a 1–3 line summary to stdout (counts, status, anomalies). Never spam raw bulk outputs into tool stdout — bloated context triggers premature context compaction and degrades model reasoning.
@@ -35,6 +36,10 @@ Do not use this as the primary workflow for expert judgment, design decisions, v
 - On Windows, use absolute paths for file operations and `pathlib`; do not rely on shell-specific path conversion.
 - Separate computation time from orchestration time before blaming Python. A slow end-to-end call may be caused by a cold terminal environment, an RPC bridge, model reasoning, or output transfer.
 - For Hermes configuration, use `hermes config set/get/check` and restart the relevant Hermes process; do not patch security-sensitive config files directly.
+- **Produced-artifact tasks skip discovery.** When the ask is to produce a deliverable (styled PDF, guide, report, checklist, proposal), do NOT spend calls re-discovering the environment — which interpreter, which libraries are installed, which fonts exist. Go straight to the build using the standing recipe in `references/styled-pdf-build.md`; probe only for something that recipe does not already name. Re-running environment discovery on a task you already know how to execute is the most common cause of an "it's taking too long" complaint.
+- **Pin the interpreter explicitly.** A bare `python` on PATH may lack the libraries the Hermes venv has. When an import fails, check the venv interpreter by absolute path before concluding the package is missing — a `ModuleNotFoundError` from the default `python` is not evidence of absence. Keep a table of which library lives where rather than re-probing each session (see `references/styled-pdf-build.md`).
+- **Never chain approval-triggering commands onto the command that produces the deliverable.** A destructive (`rm -rf`) or shell-launching (`cmd //c start`) fragment in the same command line blocks the entire line, and the copy/build in it is lost with the blocked fragment. Produce or copy the artifact in its own command; clean up, move, or open it separately.
+- **No vision, no claim.** When the image analyzer is unavailable for the turn, verify the artifact mechanically (page count, per-page extracted text, non-empty assertions) and state which method ran. Never present a mechanical check as a visual one, and never assert an image "looks right" when you did not see it.
 
 ## Procedure
 
@@ -51,6 +56,7 @@ Do not use this as the primary workflow for expert judgment, design decisions, v
 
 ## Pitfalls
 
+- **Do not treat system updates or log checks as a data parsing task requiring Python.** When the user asks what changed in an update or what happened recently, do not build a Python script to parse 1000+ git commits into JSON. Use a fast CLI summary (`git log -n 20 --oneline` or `git log --grep`) to identify high-signal highlights in 1–2 seconds.
 - **Do not use Python for a single native read.** Kernel startup and wrapper overhead can exceed the file operation.
 - **Do not measure nested `execute_code → terminal → python` as Python speed.** That measurement includes terminal lifecycle and RPC overhead.
 - **Do not serialize independent reads in a Python loop.** Parallel native tool calls usually have less transport overhead and preserve clearer evidence.
@@ -66,3 +72,4 @@ For a performance complaint, measure at least two paths: a direct local operatio
 For a batch task, verify the requested cardinality with a script or count reconciliation; never rely on mental counting.
 
 See `references/latency-diagnostics.md` for the timing breakdown and decision matrix.
+See `references/styled-pdf-build.md` for the fast path to producing designed PDF deliverables (interpreter, Cyrillic fonts, styled layout primitives, mechanical verification).

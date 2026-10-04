@@ -63,3 +63,27 @@ To prevent synthetic UGC and product videos from looking like plastic CGI or AI 
 - **Avoid multi-hop conversion funnels for apparel:** Do not route cold traffic from ads through landing pages, lead-capture forms, or Telegram bots before reaching the marketplace (e.g. Wildberries, Ozon). Fashion apparel is an impulse, visual purchase. Each extra redirect or hop sheds 60–80% of potential buyers.
 - **Organic Multicast strategy:** Deploy one produced video across all major short-form platforms simultaneously (Instagram Reels, TikTok, YouTube Shorts, VK Clips). Direct viewers straight to the marketplace SKU via search terms ("find brand X on marketplace") or a single link aggregator in the profile bio.
 - **FBS inventory synchronization:** When testing an apparel SKU via FBS using a local supplier's catalog items, verify physical warehouse availability before listing stock to avoid fulfillment cancellations and seller rating degradation.
+
+## Virtual Influencer Lore Design & Dual-Bot Architecture
+
+### 1. Character Lore & Authenticity Anchors (Killing the Uncanny Valley)
+Pure synthetic perfection makes digital influencers feel alien and untrustworthy. To build an audience that converts:
+- **The Dual-Life Profession Formula:** Give the persona a credible daytime creative/remote profession (e.g. motion/digital designer, UI stylist) combined with an athletic/movement passion (e.g. reformer pilates trainee). This naturally justifies why she splits her time between light-filled aesthetic movement studios and coffee shops with a laptop.
+- **Relatable Imperfection Anchors:** Intentionally write flaws and non-optimized habits into her character lore:
+  - Cravings & balance: loves almond croissants and fresh bakeries with filter coffee (rejects toxic diet culture).
+  - Energy realism: admits when she lacks motivation to train, opts for 10-minute floor stretching instead.
+  - Relatable mishaps: overslept because of late-night arthouse cinema, messy bun held together with a claw clip.
+- **Tone of Voice:** Speak as a grounded, peer-to-peer friend. No corporate marketing speak, no aggressive CTA spam, no hustle-porn clichés (`🔥🚀💪`).
+
+### 2. Operational Separation: Producer Profile vs. Character Bot
+Do not try to make one bot do both backstage generation and frontstage character conversation.
+- **Backstage Producer (Hermes Profile):** Operates under a dedicated workspace profile (e.g. `divine-element`). Role: creative director, visual prompt engineer, product fidelity auditor, and marketplace funnel tracker.
+- **Frontstage Persona Bot (Telegram Gateway / Channel Bot):** Operates strictly in-character (first-person). Role: community engagement, lifestyle Q&A, comments triage, and conversational personality calibration. Never expose internal prompts, image parameters, or seller business metrics through this persona.
+
+### 3. Pilot Launch Sequence (The 5-Post Capsule)
+Before producing dozens of random posts, launch with a 5-pillar starter capsule:
+1. *Morning ritual & gentle mobility:* Aesthetic morning light, honest mood, zero product pushing.
+2. *Streetstyle Coffee Run:* Athleisure styling (shorts + boyfriend blazer + sneakers + iced matcha).
+3. *Movement & Squat Test:* Technical fit under load at a reformer/mat studio, addressing common garment pain points (slips, rolls, transparency).
+4. *Curated lifestyle focus:* Workspace setup, ambient playlist, creative project snippet.
+5. *Authentic downtime:* Evening wind-down, tea, book/cinema, candid reflection.

@@ -1,3 +1,7 @@
+---
+tags: [wildberries, gallery17, analytics, report]
+---
+
 # 📊 Мониторинг ниши кружек WB
 
 > [[Главная|🏠 Главная]] / [[02_Wildberries_Галерея17/Галерея 17|☕ Галерея 17]]

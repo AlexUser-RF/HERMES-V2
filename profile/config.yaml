@@ -1,7 +1,8 @@
 model:
-  base_url: https://routerai.ru/api/v1
-  default: google/gemini-3.8-flash
+  default: google/gemini-3.8-flash@provider=google-ai-studio/flex
   provider: openrouter
+  reasoning_effort: medium
+  base_url: https://routerai.ru/api/v1
 fallback_providers:
   - model: openai/gpt-6-luna
     provider: openrouter
@@ -28,7 +29,7 @@ agent:
     teacher: You are a patient teacher. Explain concepts clearly with examples.
     technical: You are a technical expert. Provide detailed, accurate technical information.
     uwu: hewwo! i'm your fwiendwy assistant uwu~ i wiww twy my best to hewp you! *nuzzles your code* OwO what's this? wet me take a wook! i pwomise to be vewy hewpful >w<
-  reasoning_effort: high
+  reasoning_effort: medium
   verbose: false
 terminal:
   backend: local
@@ -82,24 +83,31 @@ auxiliary:
     model: google/gemini-3.8-flash
     extra_body:
       max_tokens: 3000
+    base_url: https://routerai.ru/api/v1
   skills_hub:
     provider: openrouter
     model: deepseek/deepseek-v4-flash-0731
+    base_url: https://routerai.ru/api/v1
   mcp:
     provider: openrouter
     model: deepseek/deepseek-v4-flash-0731
+    base_url: https://routerai.ru/api/v1
   title_generation:
     provider: openrouter
     model: deepseek/deepseek-v4-flash-0731
+    base_url: https://routerai.ru/api/v1
   curator:
     provider: openrouter
     model: deepseek/deepseek-v4-flash-0731
+    base_url: https://routerai.ru/api/v1
   web_extract:
     model: deepseek/deepseek-v4-flash-0731
     provider: openrouter
+    base_url: https://routerai.ru/api/v1
   compression:
     model: deepseek/deepseek-v4-flash-0731
     provider: openrouter
+    base_url: https://routerai.ru/api/v1
 display:
   compact: false
   busy_input_mode: interrupt
@@ -115,6 +123,8 @@ display:
   long_running_notifications: true
   tool_progress: all
   language: ru
+  in_app_tips: false
+  in_app_tours: false
 tts:
   provider: openai
 stt:
@@ -182,6 +192,7 @@ streaming:
 telemetry:
   shared_metrics:
     enabled: false
+    send: false
 updates:
   pre_update_backup: false
   backup_keep: 5
@@ -189,13 +200,12 @@ updates:
 _config_version: 49
 group_sessions_per_user: true
 image_gen:
-  openrouter:
-    model: google/gemini-3.1-flash-image
   provider: openrouter
+  openrouter:
+    model: openai/gpt-image-2.5-sunburst
 known_builtin_toolsets:
   cli:
     - browser
-    - clarify
     - code_execution
     - computer_use
     - connections
@@ -210,11 +220,9 @@ known_builtin_toolsets:
     - memory
     - session_search
     - skills
-    - spotify
     - stt
     - terminal
     - todo
-    - tts
     - video
     - video_gen
     - vision
@@ -223,11 +231,16 @@ known_builtin_toolsets:
     - yuanbao
 known_plugin_toolsets:
   cli:
-    - spotify
+    - a2a
+    - homeassistant
+    - rescuer
+  acp:
+    - homeassistant
+  webhook:
+    - homeassistant
 platform_toolsets:
   cli:
     - browser
-    - clarify
     - code_execution
     - computer_use
     - connections
@@ -235,13 +248,12 @@ platform_toolsets:
     - delegation
     - file
     - image_gen
-    - kanban
     - memory
+    - rescuer
     - session_search
     - skills
     - terminal
     - todo
-    - tts
     - vision
     - web
   discord:
@@ -280,3 +292,14 @@ onboarding:
   seen:
     busy_input_prompt: true
     profile_build_offered: true
+plugins:
+  enabled:
+    - agent-log
+    - disk-cleanup
+    - homeassistant
+    - toolaria
+  disabled: []
+_left_core_scoped:
+  - homeassistant
+_left_core_installed:
+  - homeassistant

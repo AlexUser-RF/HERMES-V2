@@ -21,6 +21,7 @@ Configure Hermes for Alexey without weakening important task-specific behavior o
 - Preserve the first anchor line of `SOUL.md` byte-for-byte unless Alexey explicitly authorizes changing it.
 - Put stable user preferences in the user profile or the relevant skill; put temporary operational state in memory/session notes. Do not turn a one-off incident into a permanent personality rule.
 - Separate language layers before changing anything: `display.language` controls interface localization; visible interim commentary and step descriptions are model-generated; raw hidden reasoning language is not reliably controllable or necessarily exposed. Never promise that a SOUL instruction will translate every reasoning token.
+- **Strict single-language user communication (Russian):** When the user requires Russian communication, all user-visible output—including conversational text, interim progress prose between tool calls, explanations, and final answers—must be strictly in Russian. Do not emit English conversational prose or mixed-language text in the visible turn. Keep technical identifiers (file paths, tool names, commands, code) in their original format, but all explanatory commentary around them must be Russian.
 - Preserve `reasoning_effort: high` for the flipping and coach profiles unless Alexey explicitly changes that priority. Improve speed with routing, batching, and display settings—not by silently lowering reasoning depth on those profiles.
 - Use `hermes config set/get/check` for configuration changes, never direct patching of security-sensitive config files. After changes, verify the resolved values and state the required restart/reload boundary.
 - Do not report a change as successful based only on a setter acknowledgement. Re-read or query the effective setting, run the relevant checker, and perform a small behavior or connectivity verification when practical.
@@ -37,6 +38,7 @@ Configure Hermes for Alexey without weakening important task-specific behavior o
 
 ## Pitfalls
 
+- **Do not put unconditional research imperatives in `SOUL.md` under high reasoning.** Instructions like "always research thoroughly / do deep analysis" force reasoning models (e.g. Gemini with `reasoning: high`) into 15–30s hidden CoT deliberation on trivial greetings ("Привет") and short confirmations. Gaze depth behind explicit task context or user triggers.
 - **Do not edit SOUL.md before approval.** Personality changes are durable and can alter every future session, so user consent is a hard gate.
 - **Do not confuse UI language with model-generated commentary.** Translating static labels does not force Gemini or an auxiliary title/progress generator to write Russian text.
 - **Do not lower global reasoning to fix routine latency.** It silently degrades high-value flipping and coaching work; optimize tool routing first.

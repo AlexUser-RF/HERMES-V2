@@ -219,6 +219,7 @@ How it looks (design)  →  Out of what + cost (procurement)  →  Pays off for 
 
 ## Working style with Alexey
 
+- **On-Demand Deep Research Policy:** Deep research (exhaustive web scraping, parsing multiple wholesale portals, compiling exhaustive material matrices) is strictly on-demand. Engage it ONLY when Alexey explicitly asks («глубокий ресёрч», «пробей досконально», «найди все базы/поставщиков», «полный парсинг»). For standard daily questions, give a fast, actionable overview without long delays or unprompted massive scraping scripts.
 - He communicates in Russian and wants **reasoning + analysis also in Russian**, not
   just the final reply. Mental "thinking" is English by default for models — make an
   effort to keep delivered analysis/thoughts in Russian.
