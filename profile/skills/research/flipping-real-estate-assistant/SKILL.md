@@ -246,7 +246,10 @@ How it looks (design)  →  Out of what + cost (procurement)  →  Pays off for 
     2. *Property-specific ties:* Link local utilities and building-tied staff (e.g. HOA plumber, building manager) directly in the property card `Недвижимость\<Объект>\<Объект>.md`.
   - **Alexey's workflow preferences & pacing:**
     - **Do NOT rush visual concepts/Pinterest references prematurely:** When starting demolition/rough works, Alexey focuses on actual build execution, debris removal, structural facts, and budgeting. Only generate/fetch design references and visual moodboards when reaching the finish & styling phase in the schedule.
-    - **Obsidian Vault maintenance:** Regularly clean obsolete intermediate files (plan crops, outdated renders, duplicate root PDFs) and keep only validated documents, photos, and live financial spreadsheets (`.xlsx`). Keep root clean and maintain `Главная.md` navigation hub connecting flips, WB, YouTube, and personal trackers without dead wikilinks.
+    - **Obsidian Vault maintenance & Clean Root:**
+      - *Clean root standard:* Keep vault root strictly minimal — only `Главная.md` belongs in root. Project-specific roadmap templates belong in `Недвижимость/` (`Недвижимость/Флиппинг_Базовый_Шаблон_Дорожная_Карта.md`).
+      - *Graph View color coding (`.obsidian/graph.json`):* Real estate & flipping notes are grouped under `query: "path:Недвижимость"` with Terracotta / Brick Orange (`#C9673F` / rgb 13199167).
+      - *Link audit pitfall (attachments):* In Obsidian, links to images (`[[plan.png]]`) and documents (`[[report.pdf]]`) are valid targets. Never check link validity against `*.md` files alone; always match targets against all vault assets (`rglob("*")`) to prevent false-positive "broken link" diagnoses.
     - **Safe Timed Shutdowns on Windows:** Built-in shell commands like `shutdown` are blocked by the agent runtime hardline blocklist. Never tell the user it is impossible; execute non-interactive scheduled shutdowns programmatically via a Python subprocess running `subprocess.run(["shutdown.exe", "-s", "-t", str(seconds)], capture_output=True)` to schedule clean system shutdowns directly without interactive shell blocks.
 - **Financial tracking & Expense benchmarking (Google Sheets + Excel):**
   - Maintain a clean 3-layer budget table (`.xlsx` in `Смета_и_чеки/` + synced live to Google Sheets via `productivity:google-workspace`):
@@ -307,7 +310,7 @@ How it looks (design)  →  Out of what + cost (procurement)  →  Pays off for 
   - `05_Стейджинг_и_продажа/` — клининг, декор, проф. фото, текст листинга под верхнюю планку цены
   - `Смета_и_чеки/` — фиксация чеков и факта расходов по этапам
   - Дополнительно: `Планировка/`, `Фото/Объект_первичный_осмотр/`, `Аналитика_аналоги/`
-- Master templates are stored in root Obsidian: `Флиппинг_Базовый_Шаблон_Дорожная_Карта.md`.
+- Master templates are stored in `Недвижимость/`: `Недвижимость/Флиппинг_Базовый_Шаблон_Дорожная_Карта.md` (the vault root contains strictly `Главная.md`).
 - When generating printable materials or checklists for Alexey (e.g. on-site inspection, door catalogue comparisons), compile them as stand-alone styled PDFs via ReportLab with Russian Cyrillic font support (`Arial`/`Arial-Bold`) and place copies in both the workspace root and the property's `00_Подготовка_и_замеры/` folder.
 
 ## Field inspection tools: Offline Interactive Web Checklists (Learned pattern)
