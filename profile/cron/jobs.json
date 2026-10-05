@@ -22,15 +22,15 @@
       "schedule_display": "0 23 * * 1,3,0",
       "repeat": {
         "times": null,
-        "completed": 35
+        "completed": 36
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-09T18:41:06.729530+03:00",
-      "next_run_at": "2026-10-05T23:00:00+03:00",
-      "last_run_at": "2026-09-30T23:28:19.493973+03:00",
+      "next_run_at": "2026-10-07T23:00:00+03:00",
+      "last_run_at": "2026-10-04T23:37:42.202940+03:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -39,14 +39,14 @@
       "enabled_toolsets": null,
       "workdir": null,
       "fire_claim": {
-        "at": "2026-10-04T23:00:24.817563+03:00",
-        "by": "WIN-EHB031480DQ:11704:a78ff670491e498a8e1abd19aaefbefb"
+        "at": "2026-10-05T23:00:09.394592+03:00",
+        "by": "WIN-EHB031480DQ:14068:3a0ddc59e4d44aea902b61bee086d989"
       },
       "failure_streak": 0,
       "last_dispatch": {
-        "scheduled_at": "2026-10-04T23:00:00+03:00",
-        "dispatched_at": "2026-10-04T23:00:24.699122+03:00",
-        "lateness_seconds": 24.7,
+        "scheduled_at": "2026-10-05T23:00:00+03:00",
+        "dispatched_at": "2026-10-05T23:00:09.269787+03:00",
+        "lateness_seconds": 9.3,
         "kind": "on_time"
       }
     },
@@ -119,15 +119,15 @@
       "schedule_display": "0 10 * * 1",
       "repeat": {
         "times": null,
-        "completed": 7
+        "completed": 8
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-18T23:10:49.159298+03:00",
-      "next_run_at": "2026-10-05T10:00:00+03:00",
-      "last_run_at": "2026-09-28T12:30:13.687637+03:00",
+      "next_run_at": "2026-10-12T10:00:00+03:00",
+      "last_run_at": "2026-10-05T11:27:13.083251+03:00",
       "last_status": "error",
       "last_error": "Script exited with code 1\nstderr:\nОшибка получения моделей с OpenRouter: HTTP Error 403: Forbidden",
       "last_delivery_error": null,
@@ -136,12 +136,16 @@
       "enabled_toolsets": null,
       "workdir": null,
       "fire_claim": null,
-      "failure_streak": 3,
+      "failure_streak": 4,
       "last_dispatch": {
-        "scheduled_at": "2026-09-28T10:00:00+03:00",
-        "dispatched_at": "2026-09-28T12:30:12.177179+03:00",
-        "lateness_seconds": 9012.2,
-        "kind": "catch_up"
+        "scheduled_at": "2026-10-05T10:00:00+03:00",
+        "dispatched_at": "2026-10-05T11:27:11.326700+03:00",
+        "lateness_seconds": 5231.3,
+        "kind": "late"
+      },
+      "last_failure": {
+        "at": "2026-10-05T11:27:13.083251+03:00",
+        "detail": "Script exited with code 1\nstderr:\nОшибка получения моделей с OpenRouter: HTTP Error 403: Forbidden"
       }
     },
     {
@@ -219,32 +223,36 @@
       "schedule_display": "0 */4 * * *",
       "repeat": {
         "times": null,
-        "completed": 83
+        "completed": 88
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-09-14T00:31:48.788026+03:00",
-      "next_run_at": "2026-10-05T00:00:00+03:00",
-      "last_run_at": "2026-10-04T20:00:38.100737+03:00",
-      "last_status": "ok",
-      "last_error": null,
+      "next_run_at": "2026-10-06T00:00:00+03:00",
+      "last_run_at": "2026-10-05T20:00:43.452566+03:00",
+      "last_status": "error",
+      "last_error": "Script exited with code 1\nstdout:\n⚠️ ОБНАРУЖЕНЫ РАЗДУТЫЕ СЕССИИ (Риск переплаты за контекст!):\n  • Профиль: [default], Источник: desktop, Сообщений: 108, Входных токенов: 2,055,917 — \"Проверить профиль nocturne\"\n    Рекомендация: сбросить ветку через /new или системную очистку.",
       "last_delivery_error": null,
       "last_delivery_unverified": null,
-      "failure_streak": 0,
+      "failure_streak": 1,
       "deliver": "local",
       "origin": null,
       "enabled_toolsets": null,
       "workdir": null,
       "last_dispatch": {
-        "scheduled_at": "2026-10-04T20:00:00+03:00",
-        "dispatched_at": "2026-10-04T20:00:24.691296+03:00",
-        "lateness_seconds": 24.7,
+        "scheduled_at": "2026-10-05T20:00:00+03:00",
+        "dispatched_at": "2026-10-05T20:00:09.258832+03:00",
+        "lateness_seconds": 9.3,
         "kind": "on_time"
       },
-      "fire_claim": null
+      "fire_claim": null,
+      "last_failure": {
+        "at": "2026-10-05T20:00:43.452566+03:00",
+        "detail": "Script exited with code 1\nstdout:\n⚠️ ОБНАРУЖЕНЫ РАЗДУТЫЕ СЕССИИ (Риск переплаты за контекст!):\n  • Профиль: [default], Источник: desktop, Сообщений: 108, Входных токенов: 2,055,917 — \"Проверить профиль nocturne\"\n    Рекомендация: сбросить ветку через /new или системную очистку."
+      }
     }
   ],
-  "updated_at": "2026-10-04T23:00:24.818986+03:00"
+  "updated_at": "2026-10-05T23:00:09.395714+03:00"
 }

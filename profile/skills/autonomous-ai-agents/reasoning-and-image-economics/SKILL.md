@@ -41,9 +41,21 @@ Pricing per 1M tokens on `routerai.ru/api/v1/models/google/gemini-3.8-flash/endp
 - **Mechanism**: Dynamic routing breaks Gemini server-side prompt cache affinity. Hits drop from 85–95% down to 0% (`cache=0` in `agent.log`).
 - **Impact**: Without cache, every tool execution turn bills the full 30,000+ token context at non-cached rates. Combined with 2,000–4,000 CoT completion tokens per turn on `reasoning: high`, balance drains 3.5x–5x faster.
 - **Fix**: Pin the channel explicitly to preserve cache affinity:
-  ```bash
-  hermes config set model.default "google/gemini-3.8-flash@provider=google-ai-studio/flex"
-  ```
+  - For maximum economy / non-urgent bulk tasks:
+    ```bash
+    hermes config set model.default "google/gemini-3.8-flash@provider=google-ai-studio/flex"
+    ```
+  - For immediate response without spot/preemptible queue delays (or when flex queues spike):
+    ```bash
+    hermes config set model.default "google/gemini-3.8-flash"
+    ```
+    *(Note: If switching off flex to bare auto-route for speed, verify whether upstream cache hits drop; if latency returns due to full tools payload on unpinned routes, use `@provider=google-ai-studio/priority` instead).*
+
+### Understanding Cascade Architecture vs Direct Chat Dispatch
+- **Direct User Chat Routing**: User messages always hit `model.default`. Hermes does NOT dynamically route casual chat questions ("Не спишь?", "Привет") to cheaper aux models like DeepSeek; the full context (system prompt, tools, chat history) is always sent to the primary model.
+- **Auxiliary Workloads**: Auxiliary models (`auxiliary.compression`, `title_generation`, etc.) only run internal background tasks.
+- **Delegation Workloads**: Cost optimization for repetitive/heavy tasks must be routed explicitly via `delegate_task` (pointing `delegation.model` to lightweight cost-effective models like DeepSeek Flash rather than heavy models like Luna Pro).
+- **Fast Chat Economics**: To avoid burning balance on trivial chat turns, use `/new` regularly after completing milestones to purge accumulated history, avoiding re-sending tens of thousands of tokens per single turn.
 
 ## 3. RouterAI vs ProxyAPI (Domestic Providers in RF)
 - **RouterAI Failure Modes (desktop.log)**:

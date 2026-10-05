@@ -8,8 +8,6 @@ fallback_providers:
     provider: openrouter
   - model: deepseek/deepseek-v4-flash-0731
     provider: openrouter
-  - model: z-ai/glm-5.2:free
-    provider: openrouter
 database:
   journal_mode: wal
 agent:
@@ -294,7 +292,6 @@ onboarding:
     profile_build_offered: true
 plugins:
   enabled:
-    - agent-log
     - disk-cleanup
     - homeassistant
     - toolaria
@@ -303,3 +300,6 @@ _left_core_scoped:
   - homeassistant
 _left_core_installed:
   - homeassistant
+providers:
+  openrouter:
+    stale_timeout_seconds: 90
