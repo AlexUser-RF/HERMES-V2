@@ -3,6 +3,10 @@ model:
   provider: openrouter
   reasoning_effort: medium
   base_url: https://routerai.ru/api/v1
+  max_tokens: 16384
+providers:
+  openrouter:
+    stale_timeout_seconds: 90
 fallback_providers:
   - model: openai/gpt-6-luna
     provider: openrouter
@@ -274,14 +278,6 @@ platform_toolsets:
     - hermes-whatsapp
   yuanbao:
     - hermes-yuanbao
-platforms:
-  telegram:
-    enabled: true
-    home_channel:
-      platform: telegram
-      chat_id: '242447706'
-      name: Алексей
-      user_id: '242447706'
 session_reset:
   at_hour: 4
   idle_minutes: 1440
@@ -300,6 +296,3 @@ _left_core_scoped:
   - homeassistant
 _left_core_installed:
   - homeassistant
-providers:
-  openrouter:
-    stale_timeout_seconds: 90

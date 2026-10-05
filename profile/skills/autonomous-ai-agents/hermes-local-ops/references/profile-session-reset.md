@@ -48,6 +48,7 @@ When Telegram context grows too large (e.g. hundreds of messages in DM chat `242
       powershell -NoProfile -Command '$wshell = New-Object -ComObject wscript.shell; if ($wshell.AppActivate("Hermes")) { Start-Sleep -Milliseconds 250; $wshell.SendKeys("^n"); "Sent Ctrl+N" } else { "Hermes window not found" }'
       ```
     - Это переключает UI на чистый черновик сессии без необходимости ручных кликов со стороны пользователя.
+- **Current-session reset (the chat you are answering in)**: when the reset targets the ACTIVE session — the user asks to clear the very dialog you are replying from (e.g. «сброс чата в профиле ноктюрн») — wipe `state.db` per the procedure, then REPORT the result and ask the user to press `Ctrl+N` / «Новый чат» themselves. Do NOT fire the PowerShell `Ctrl+N` hotkey mid-turn: it switches the Electron window to a fresh session and the in-flight answer's render is lost. The hotkey path stays for bot-chat resets, where no own answer is being delivered.
 - When resetting conversational context for secondary bot profiles (e.g. `flipping` or `gallery17`), user desktop chat sessions in that profile are tagged with `source = 'desktop'`, not `'telegram'`. Always inspect `SELECT id, source, message_count FROM sessions` across the profile's `state.db` before deciding which records to purge.
 - Always check and purge accumulated request dump JSON files under `$LOCALAPPDATA/hermes/profiles/<profile>/sessions/request_dump_*.json` in the same cleanup pass; leaving hundreds of request dumps degrades startup latency.
 
