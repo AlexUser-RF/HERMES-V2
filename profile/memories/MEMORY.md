@@ -1,14 +1,12 @@
 Проекты: 1) Флиппинг Фрунзе 17 (пилот, фокус 100%); 2) WB 'Галерея 17' (кружки, FBS: идеи принтов, слоганы, визуал; юнитку и остатки Алексей ведет сам, работа в Desktop); 3) Divine Element.
 §
-Google OAuth (coopmessage.me@gmail.com): ~/AppData/Local/hermes/google_token.json. Hermes Workspace: UI :3000, dash :9119, gw :8642. D:\HERMES FILES + AppData\Local\hermes; cwd=D:\HERMES FILES. В Win11 MEDIA с пробелами сбоит -> дублировать PDF в D:\HERMES_REPORTS и открывать через cmd start.
+Google OAuth: coopmessage.me@gmail.com. Баг Win11: MEDIA с пробелами сбоит -> дублировать PDF в D:\HERMES_REPORTS и открывать через cmd start.
 §
 Бэкап: Пн,Ср,ВС 23:00 AlexUser-RF/HERMES-V2 (fb5e12b0624e). Уборка: ВС 22:50 (59b9ee022b2a).
 §
 Флиппинг: Тула, Фрунзе 17, 2к 43.2м², 5/5, кирп 1966. Куплена 3.9М; ремонт 620-650к; цель 5.6М. План: прихожая 2.5, с/у СОВМ. 2.9, кухня 6.0 (ГАЗ), зал 18.5 (балкон), спальня 12.6, темная 2.5. Стиль: Тёплый Сканди/Кинфолк (греж F497/RAL7047, светлый дуб, белый плинтус 80мм, черный металл). Референсы стиля строго без навязывания перепланировок.
 §
-Модели OpenRouter: мозг/зрение gemini-3.8-flash; черн.OCR deepseek-v4-flash-vision-exp; субагенты/делегация openai/gpt-6-luna-pro; auxiliary deepseek-v4-flash-0731; профиль WB Галерея 17 на gpt-6-luna-pro.
-§
-RouterAI: базовый канал gemini-3.8-flash@provider=google-ai-studio/flex (дешевый, стабильный кеш). Железное правило: даже в пиковые часы канал сам НЕ менять — только предлагать Алексею. Инструменты kanban, tts, clarify отключены. Aux: base_url=https://routerai.ru/api/v1.
+Модели RouterAI: мозг gemini-3.8-flash, субагенты и WB Галерея 17 на gpt-6-luna-pro, aux deepseek-v4.1-flash. Железно: базовый канал Gemini сам не менять, только предлагать. kanban/tts/clarify off.
 §
 Скаут Авито Тула в профиле realty-scout: крон Пн 08:00 заморожен до сдачи Фрунзе 17; напомнить запустить скоринг после.
 §
@@ -17,3 +15,5 @@ RouterAI: базовый канал gemini-3.8-flash@provider=google-ai-studio/f
 Image_gen везде: provider openrouter (RouterAI), model openai/gpt-image-2.5-sunburst. Рабочий.
 §
 PDF-референсы ремонта: все помещения (вкл. с/у); перепланировку показывать только после согласования; цифры сверять Excel/PDF/Obsidian (база едина).
+§
+OPENROUTER_MODELS_URL в hermes_constants.py переопределён на RouterAI (openrouter.ai 403). Проверять при hermes update.

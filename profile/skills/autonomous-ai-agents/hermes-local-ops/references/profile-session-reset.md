@@ -48,19 +48,57 @@ When Telegram context grows too large (e.g. hundreds of messages in DM chat `242
       powershell -NoProfile -Command '$wshell = New-Object -ComObject wscript.shell; if ($wshell.AppActivate("Hermes")) { Start-Sleep -Milliseconds 250; $wshell.SendKeys("^n"); "Sent Ctrl+N" } else { "Hermes window not found" }'
       ```
     - Это переключает UI на чистый черновик сессии без необходимости ручных кликов со стороны пользователя.
-- **Current-session reset (the chat you are answering in)**: when the reset targets the ACTIVE session — the user asks to clear the very dialog you are replying from (e.g. «сброс чата в профиле ноктюрн») — wipe `state.db` per the procedure, then REPORT the result and ask the user to press `Ctrl+N` / «Новый чат» themselves. Do NOT fire the PowerShell `Ctrl+N` hotkey mid-turn: it switches the Electron window to a fresh session and the in-flight answer's render is lost. The hotkey path stays for bot-chat resets, where no own answer is being delivered.
+### 2b. Refreshing the Bot chat ON SCREEN — `Ctrl+R` is a dead end
+
+The DB wipe clears history for good, but it does not move the session the window is showing. Two wrong levers and one right one:
+
+- **`Ctrl+R` does nothing here.** Verify before blaming the user: Hermes Desktop registers no global reload accelerator — the only `reload` in the app source is `src/contrib/runtime-loader.ts`, for plugin hot-swap. So `Ctrl+R` neither reloads the window nor resets a chat, and even a true window reload would just re-open the SAME session, because a Bot chat is the profile's persistent «forever chat».
+- **`Ctrl+N` / New Chat** opens a throwaway draft in Sessions mode; inside Bot Mode it is not the reset for a bot.
+- **The lever that works — «New chat with this bot».** In the Bots rail, right-click the bot → context menu item **`New chat with this bot`** (English; ja / zh / zh-TW are localized, there is no ru locale, so the UI reads English). It calls `newBotChat(bot)` → `host.newChat(route, { workspaceMode: 'bots', workspaceOwnerKey })` — source: `src/plugins/hermes-bots/data.ts`, menu item rendered in `bot-row.tsx` as `b.bot.newChatWith`. This opens a fresh empty Bot chat — the visible clean slate.
+
+Do the `state.db` wipe yourself first, then give the user that single UI step. Do not loop on `Ctrl+R` instructions or on explaining the «This chat never resets» notice.
+
+**Sessions mode (the ordinary chat) is the same trap.** `Ctrl+R` is equally dead there — the app binds no reload chord at all — and a relaunch re-opens the last session, so the transcript «doesn't disappear». The fresh-context chord is `session.new` = **`Ctrl+N`** (Windows/Linux; the sidebar «New Session» button runs the identical action) — it drops to a new empty draft while the old session stays in the list. `Ctrl+T` (`session.newTab`) opens a fresh session as a tab; `Ctrl+Shift+N` (`session.newWindow`) a new window. To get an old session off the screen use **Archive** (`session.archive`), never reload. Defaults verified in `apps/desktop/src/lib/keybinds/actions.ts` and `combo.test.ts` (`session.new`→`mod+n`).
+
+### 2c. When a single profile 401s while root works — dead copied key, not config
+
+Symptom: every turn in one specialist profile fails `HTTP 401` (`Missing Authentication header` / `401 Unauthorized`) while the root profile and a direct `POST /chat/completions` with root's key are fine. Cause: the profile's own `profiles/<p>/.env` (and, via the runtime, the pool entry in its `auth.json`) still carries an OLD copied `OPENROUTER_API_KEY` that was never updated when the root key rotated. `base_url` is usually already correct — the dead key is the whole failure.
+
+- Prove it with a real completion, never `GET /models` (RouterAI serves its catalog regardless of the bearer token, so `/models` returns 200 even for a dead key — see `scripts/probe_routerai_key.py`).
+- Fix: back up `.env` and `auth.json`, write the WORKING key into BOTH (env line + the manual `RouterAI` pool entry at priority 0 with `base_url: https://routerai.ru/api/v1`), clear the cooldown with `hermes --profile <p> auth reset openrouter`, then re-probe with a completion.
+- The runtime re-materializes an `env:OPENROUTER_API_KEY` pool entry (priority 1, `base_url` canonical `openrouter.ai`) on the next read — that is expected and harmless as long as the manual RouterAI entry stays at priority 0.
+- Verify end-to-end with a real completion, and never trust stdout alone: `hermes --profile <p> -z "Reply with exactly one word: PONG" -t ''` (empty toolset). A full-toolset oneshot on the desktop platform can sit past the timeout with EMPTY stdout while the turn actually SUCCEEDED — the reply is persisted as a session in the profile's own `state.db`, titled by the answer (e.g. `PONG`, `PONG #2`), so read `sessions`/`messages` there before declaring the profile broken. Also: root prints `auth status openrouter` = `logged out` too, with working api_keys — that line is never evidence of a config problem.
+- `hermes --profile <p> auth status openrouter` prints `logged out` even when api_key credentials are present — it reflects OAuth/session state, not the key pool; judge by `hermes --profile <p> auth list` and by a live completion, not by that line.
+
 - When resetting conversational context for secondary bot profiles (e.g. `flipping` or `gallery17`), user desktop chat sessions in that profile are tagged with `source = 'desktop'`, not `'telegram'`. Always inspect `SELECT id, source, message_count FROM sessions` across the profile's `state.db` before deciding which records to purge.
 - Always check and purge accumulated request dump JSON files under `$LOCALAPPDATA/hermes/profiles/<profile>/sessions/request_dump_*.json` in the same cleanup pass; leaving hundreds of request dumps degrades startup latency.
+
+### 2a. «Перезапусти» after a reset — check what is actually running FIRST
+
+A reset request is often followed by "перезапусти". Before promising or attempting any restart, establish what actually serves the profile:
+
+- **Desktop bot profiles usually have NO gateway.** `hermes --profile <p> gateway status` commonly answers *Gateway is not running* while a **stale `gateway_state.json`** still claims `gateway_state: "running"` with a long-dead `pid`. Never assume a gateway exists because the state file says so — run the status check.
+- **Read the process tree before killing anything** (`Get-CimInstance Win32_Process -Filter "Name='python.exe' or Name='hermes.exe' or Name='Hermes.exe'" | Select ProcessId,ParentProcessId,Name`). Topology: `python.exe` (argv `… .hermes/bin/hermes.exe --profile <p> serve --host 127.0.0.1 --port 0`) → parent `hermes.exe` → parent `Hermes.exe` (Electron main). The backend answering the CURRENT conversation is a **child of the Electron app**, so restarting the app tears down the process generating the reply. Hermes can auto-resume the turn afterwards via `desktop/interrupted_turns.json` (`auto_continue: true`), but warn the user before doing it — never restart the app silently mid-conversation.
+- **A renderer reload is not visible in backend logs.** `logs/gui.log` / `logs/desktop.log` only record backend `tui_gateway.server` activity (prompt accepted / turn finished), so you cannot confirm from logs that the window refreshed. Confirm visually with the user, or use the app-level restart — do not assert the reload succeeded.
+- **Match the lever to the need.** A DB context reset needs no restart at all: the context is already empty; only the UI has to re-read it (re-opening the bot tab / a window refresh). Do not sell "restart the gateway" as the fix for a profile that has no gateway.
+- **Approval-gated commands**: `hermes gateway restart` and `powershell -Command …SendKeys…` hit the approval prompt. If the user is not watching, the call returns BLOCKED (no consent) — surface that and stop; do not re-issue the same command.
 
 ### 3. Session Reset Procedure (Safe Pattern)
 
 > **Execution Speed Rule (Zero-Overhead Reset):**
 > When the user asks to clear context / reset sessions for a profile, execute the reset IMMEDIATELY without wandering into open-ended codebase exploration, grep for helper scripts, or searching internal test fixtures. The DB location and query pattern are fixed and known. Do not spend multiple tool turns investigating past backup scripts — run the backup + SQL wipe directly.
 
-1. **Backup State DB first**:
+1. **Backup State DB first**: if a `state.db-wal` file is present next to the DB (a live backend is attached — the normal case while Desktop is open), take the backup with the SQLite **backup API**, not `cp`. A plain `cp` copies the main file WITHOUT the WAL and yields a torn snapshot missing the newest writes; the backup API folds the WAL in. `cp` is only safe when no `-wal` exists.
    ```bash
    mkdir -p "$LOCALAPPDATA/hermes/profiles/<profile>/desktop-backups"
-   cp "$LOCALAPPDATA/hermes/profiles/<profile>/state.db" "$LOCALAPPDATA/hermes/profiles/<profile>/desktop-backups/state_backup_before_reset_$(date +%Y%m%d_%H%M%S).db"
+   ```
+   ```python
+   import sqlite3, time
+   src = sqlite3.connect(r'%LOCALAPPDATA%\hermes\profiles\<profile>\state.db')
+   dst_path = r'%LOCALAPPDATA%\hermes\profiles\<profile>\desktop-backups\state_backup_before_reset_%s.db' % time.strftime('%Y%m%d_%H%M%S')
+   dst = sqlite3.connect(dst_path)
+   with dst:
+       src.backup(dst)   # consistent snapshot, includes -wal
    ```
 
 2. **Execute Clean Reset via SQLite Backup Template (Safe Pattern)**:
@@ -98,4 +136,6 @@ When Telegram context grows too large (e.g. hundreds of messages in DM chat `242
 
 4. **Verify Integrity**:
    - Verify `sessions` and `messages` count is 0.
-   - Verify `SOUL.md`, `memories/MEMORY.md`, and `memories/USER.md` are preserved.
+   - Run `PRAGMA integrity_check` — it must return `ok`. Corrupted FTS5 shadow tables surface here (and later as `invalid fts5 file format`); a clean `ok` is the proof the rebuild was safe.
+   - Verify `SOUL.md`, `memories/MEMORY.md`, and `memories/USER.md` are preserved (compare sizes, not just existence).
+   - **Expected regeneration — do not loop**: if Desktop is open, it re-inserts ONE empty session shell for the bot within seconds (`sessions`=1, `messages`=0). That is the UI recreating its chat container, NOT a failed reset. Report success on `messages`=0 and never re-wipe to chase the `sessions` count back to 0.

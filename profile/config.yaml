@@ -3,14 +3,10 @@ model:
   provider: openrouter
   reasoning_effort: medium
   base_url: https://routerai.ru/api/v1
-  max_tokens: 16384
-providers:
-  openrouter:
-    stale_timeout_seconds: 90
 fallback_providers:
   - model: openai/gpt-6-luna
     provider: openrouter
-  - model: deepseek/deepseek-v4-flash-0731
+  - model: deepseek/deepseek-v4.1-flash
     provider: openrouter
 database:
   journal_mode: wal
@@ -88,26 +84,26 @@ auxiliary:
     base_url: https://routerai.ru/api/v1
   skills_hub:
     provider: openrouter
-    model: deepseek/deepseek-v4-flash-0731
+    model: deepseek/deepseek-v4.1-flash
     base_url: https://routerai.ru/api/v1
   mcp:
     provider: openrouter
-    model: deepseek/deepseek-v4-flash-0731
+    model: deepseek/deepseek-v4.1-flash
     base_url: https://routerai.ru/api/v1
   title_generation:
     provider: openrouter
-    model: deepseek/deepseek-v4-flash-0731
+    model: deepseek/deepseek-v4.1-flash
     base_url: https://routerai.ru/api/v1
   curator:
     provider: openrouter
-    model: deepseek/deepseek-v4-flash-0731
+    model: deepseek/deepseek-v4.1-flash
     base_url: https://routerai.ru/api/v1
   web_extract:
-    model: deepseek/deepseek-v4-flash-0731
+    model: deepseek/deepseek-v4.1-flash
     provider: openrouter
     base_url: https://routerai.ru/api/v1
   compression:
-    model: deepseek/deepseek-v4-flash-0731
+    model: deepseek/deepseek-v4.1-flash
     provider: openrouter
     base_url: https://routerai.ru/api/v1
 display:
@@ -195,11 +191,12 @@ telemetry:
   shared_metrics:
     enabled: false
     send: false
+    offer_version: 2
 updates:
   pre_update_backup: false
   backup_keep: 5
   non_interactive_local_changes: stash
-_config_version: 49
+_config_version: 50
 group_sessions_per_user: true
 image_gen:
   provider: openrouter
@@ -278,6 +275,14 @@ platform_toolsets:
     - hermes-whatsapp
   yuanbao:
     - hermes-yuanbao
+platforms:
+  telegram:
+    enabled: true
+    home_channel:
+      platform: telegram
+      chat_id: '242447706'
+      name: Алексей
+      user_id: '242447706'
 session_reset:
   at_hour: 4
   idle_minutes: 1440
@@ -289,10 +294,15 @@ onboarding:
 plugins:
   enabled:
     - disk-cleanup
+    - echarts-in-chat
     - homeassistant
+    - session-lens
     - toolaria
   disabled: []
 _left_core_scoped:
   - homeassistant
 _left_core_installed:
   - homeassistant
+providers:
+  openrouter:
+    stale_timeout_seconds: 90

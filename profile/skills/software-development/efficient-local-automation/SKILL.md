@@ -24,6 +24,7 @@ Do not use this as the primary workflow for expert judgment, design decisions, v
 ## Always-On Rules
 
 - Treat **code-first** as **deterministic-automation-first**, not Python-first.
+- **Level 0 (System CLI Fast Cut):** For system inspection, git history, updates, processes, and OS diagnostics, use native terminal CLI commands with bounded output (`git log -n 20 --oneline`, `docker ps`, `status`) costing $0 and 0.2s. Never write ad-hoc Python scripts to parse system logs or git history when an inquiry is a status/update check.
 - For one or two files and a simple read/search/write, use the native Hermes file tools directly: `read_file`, `search_files`, `write_file`, or `patch`. Do not invoke Python for 1–3 files; native tool dispatch latency is orders of magnitude lower (0.2–0.5s vs subprocess/kernel overhead).
 - For many local files (4+ files, Excel sheets, large text parsing), run one pure Python batch with direct filesystem access (`pathlib`, `json`, `csv`, regex, or an already-installed library) and emit a compact result.
 - Local Data Spill (quiet stdout): local scripts processing batches must write detailed data/payloads to scratch or project files, returning strictly a 1–3 line summary to stdout (counts, status, anomalies). Never spam raw bulk outputs into tool stdout — bloated context triggers premature context compaction and degrades model reasoning.
@@ -55,6 +56,7 @@ Do not use this as the primary workflow for expert judgment, design decisions, v
 
 ## Pitfalls
 
+- **Do not treat system updates or log checks as a data parsing task requiring Python.** When the user asks what changed in an update or what happened recently, do not build a Python script to parse 1000+ git commits into JSON. Use a fast CLI summary (`git log -n 20 --oneline` or `git log --grep`) to identify high-signal highlights in 1–2 seconds.
 - **Do not use Python for a single native read.** Kernel startup and wrapper overhead can exceed the file operation.
 - **Do not measure nested `execute_code → terminal → python` as Python speed.** That measurement includes terminal lifecycle and RPC overhead.
 - **Do not serialize independent reads in a Python loop.** Parallel native tool calls usually have less transport overhead and preserve clearer evidence.
