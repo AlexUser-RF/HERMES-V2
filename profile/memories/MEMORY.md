@@ -17,3 +17,5 @@ Image_gen везде: provider openrouter (RouterAI), model openai/gpt-image-2.5
 PDF-референсы ремонта: все помещения (вкл. с/у); перепланировку показывать только после согласования; цифры сверять Excel/PDF/Obsidian (база едина).
 §
 OPENROUTER_MODELS_URL в hermes_constants.py переопределён на RouterAI (openrouter.ai 403). Проверять при hermes update.
+§
+Telegram-бот привязан ТОЛЬКО к профилю default: у divine-element/flipping/gallery17/realty-scout TELEGRAM_BOT_TOKEN убран и telegram-платформа отключена — не возвращать (иначе боты конфликтуют, gateway не мультиплексится).

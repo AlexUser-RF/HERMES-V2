@@ -22,15 +22,15 @@
       "schedule_display": "0 23 * * 1,3,0",
       "repeat": {
         "times": null,
-        "completed": 37
+        "completed": 38
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-09T18:41:06.729530+03:00",
-      "next_run_at": "2026-10-11T23:00:00+03:00",
-      "last_run_at": "2026-10-05T23:00:46.604068+03:00",
+      "next_run_at": "2026-10-12T23:00:00+03:00",
+      "last_run_at": "2026-10-07T23:01:36.083268+03:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -39,14 +39,14 @@
       "enabled_toolsets": null,
       "workdir": null,
       "fire_claim": {
-        "at": "2026-10-07T23:00:54.818314+03:00",
-        "by": "WIN-EHB031480DQ:9824:1caa4d8e44ed4f4297a6cb31e2b8f86f"
+        "at": "2026-10-11T23:00:05.822985+03:00",
+        "by": "WIN-EHB031480DQ:14464:72c5686858a8489987d5648af2e954aa"
       },
       "failure_streak": 0,
       "last_dispatch": {
-        "scheduled_at": "2026-10-07T23:00:00+03:00",
-        "dispatched_at": "2026-10-07T23:00:54.690661+03:00",
-        "lateness_seconds": 54.7,
+        "scheduled_at": "2026-10-11T23:00:00+03:00",
+        "dispatched_at": "2026-10-11T23:00:05.696684+03:00",
+        "lateness_seconds": 5.7,
         "kind": "on_time"
       }
     },
@@ -173,15 +173,15 @@
       "schedule_display": "50 22 * * 0",
       "repeat": {
         "times": null,
-        "completed": 7
+        "completed": 8
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-08-24T21:32:28.233468+03:00",
-      "next_run_at": "2026-10-11T22:50:00+03:00",
-      "last_run_at": "2026-10-04T22:50:25.854378+03:00",
+      "next_run_at": "2026-10-18T22:50:00+03:00",
+      "last_run_at": "2026-10-11T22:50:09.683689+03:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -192,9 +192,9 @@
       "workdir": null,
       "fire_claim": null,
       "last_dispatch": {
-        "scheduled_at": "2026-10-04T22:50:00+03:00",
-        "dispatched_at": "2026-10-04T22:50:24.705451+03:00",
-        "lateness_seconds": 24.7,
+        "scheduled_at": "2026-10-11T22:50:00+03:00",
+        "dispatched_at": "2026-10-11T22:50:05.720512+03:00",
+        "lateness_seconds": 5.7,
         "kind": "on_time"
       }
     },
@@ -223,15 +223,15 @@
       "schedule_display": "0 */4 * * *",
       "repeat": {
         "times": null,
-        "completed": 96
+        "completed": 112
       },
       "enabled": true,
       "state": "scheduled",
       "paused_at": null,
       "paused_reason": null,
       "created_at": "2026-09-14T00:31:48.788026+03:00",
-      "next_run_at": "2026-10-08T00:00:00+03:00",
-      "last_run_at": "2026-10-07T20:14:02.528147+03:00",
+      "next_run_at": "2026-10-12T00:00:00+03:00",
+      "last_run_at": "2026-10-11T20:01:37.992895+03:00",
       "last_status": "ok",
       "last_error": null,
       "last_delivery_error": null,
@@ -242,17 +242,67 @@
       "enabled_toolsets": null,
       "workdir": null,
       "last_dispatch": {
-        "scheduled_at": "2026-10-07T12:00:00+03:00",
-        "dispatched_at": "2026-10-07T20:13:14.043038+03:00",
-        "lateness_seconds": 29594.0,
-        "kind": "catch_up"
+        "scheduled_at": "2026-10-11T20:00:00+03:00",
+        "dispatched_at": "2026-10-11T20:00:45.603579+03:00",
+        "lateness_seconds": 45.6,
+        "kind": "on_time"
       },
       "fire_claim": null,
       "last_failure": {
-        "at": "2026-10-05T20:00:43.452566+03:00",
-        "detail": "Script exited with code 1\nstdout:\n⚠️ ОБНАРУЖЕНЫ РАЗДУТЫЕ СЕССИИ (Риск переплаты за контекст!):\n  • Профиль: [default], Источник: desktop, Сообщений: 108, Входных токенов: 2,055,917 — \"Проверить профиль nocturne\"\n    Рекомендация: сбросить ветку через /new или системную очистку."
+        "at": "2026-10-09T16:01:04.348082+03:00",
+        "detail": "Script exited with code 1\nstdout:\n⚠️ ОБНАРУЖЕНЫ РАЗДУТЫЕ СЕССИИ (Риск переплаты за контекст!):\n  • Профиль: [flipping], Источник: desktop, Сообщений: 221, Входных токенов: 616,354 — \"Вопрос про модели, Luna cbkmytt lbg cbrf?…\"\n    Рекомендация: сбросить ветку через /new или системную очистку."
       }
+    },
+    {
+      "id": "1b5ade96c359",
+      "name": "routerai-pool-watchdog",
+      "prompt": "",
+      "skills": [],
+      "skill": null,
+      "model": null,
+      "provider": null,
+      "base_url": null,
+      "script": "fix_routerai_pools_all.py",
+      "no_agent": true,
+      "monitor_script": null,
+      "monitor_url": null,
+      "monitor_state": null,
+      "context_from": null,
+      "schedule": {
+        "kind": "interval",
+        "minutes": 30,
+        "display": "every 30m"
+      },
+      "schedule_display": "every 30m",
+      "repeat": {
+        "times": null,
+        "completed": 46
+      },
+      "enabled": true,
+      "state": "scheduled",
+      "paused_at": null,
+      "paused_reason": null,
+      "created_at": "2026-10-09T21:03:33.868469+03:00",
+      "next_run_at": "2026-10-11T23:25:07.607457+03:00",
+      "last_run_at": "2026-10-11T22:55:07.607457+03:00",
+      "last_status": "ok",
+      "last_error": null,
+      "last_delivery_error": null,
+      "last_delivery_unverified": null,
+      "last_failure": null,
+      "failure_streak": 0,
+      "deliver": "local",
+      "origin": null,
+      "enabled_toolsets": null,
+      "workdir": null,
+      "last_dispatch": {
+        "scheduled_at": "2026-10-11T22:54:06.503855+03:00",
+        "dispatched_at": "2026-10-11T22:55:06.272126+03:00",
+        "lateness_seconds": 59.8,
+        "kind": "on_time"
+      },
+      "fire_claim": null
     }
   ],
-  "updated_at": "2026-10-07T23:00:54.820307+03:00"
+  "updated_at": "2026-10-11T23:00:05.824699+03:00"
 }

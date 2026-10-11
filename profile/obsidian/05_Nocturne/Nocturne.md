@@ -6,6 +6,8 @@ tags: [hub, media, nocturne, instagram, cinematic, visuals, ai]
 
 > [[Главная|🏠 Главная]] / [[05_Nocturne/Nocturne|🌙 Nocturne]]
 
+> **Трекер и рендеры:** [[05_Nocturne/Реестр_роликов|🎬 Реестр роликов]]
+
 ---
 
 > **Проект:** Кинематографичный Instagram-визуал (Reels 9:16) в эстетике dark & moody / analog 35mm film.  
@@ -71,6 +73,8 @@ cinematic 35mm photograph, shot on CineStill 800T, dark and moody aesthetic, hig
 [6. Монтаж]  ──► Склейка в CapCut / DaVinci, зерно, лаконичный титр
 [7. Релиз]   ──► Reels (21:00–23:30, для ночной аудитории)
 ```
+
+> ⚙️ **Актуальный тулчейн (09.10.2026):** кадр — `openai/gpt-image-2.5-sunburst` (RouterAI), анимация I2V — `google/veo-3.1-fast` (8 с, 720p, 11.10 ₽/с), эконом-черновик — `veo-3.1-lite` (5.55 ₽/с). Детали, цены и реестр готовых рендеров: [[05_Nocturne/Реестр_роликов|🎬 Реестр роликов]].
 
 ### Копирайтинг и теги
 * **Тайтл:** строго одно слово со строчной буквы и точкой: `disconnect.` | `2:14 am.` | `out of range.` | `shelter.` | `stillness.`

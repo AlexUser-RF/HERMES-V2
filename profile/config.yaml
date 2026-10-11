@@ -127,7 +127,7 @@ tts:
   provider: openai
 stt:
   enabled: true
-  language: en
+  language: ru
   local:
     model: base
   openai:
@@ -202,6 +202,7 @@ image_gen:
   provider: openrouter
   openrouter:
     model: openai/gpt-image-2.5-sunburst
+    surface: images
 known_builtin_toolsets:
   cli:
     - browser
@@ -257,18 +258,12 @@ platform_toolsets:
     - web
   discord:
     - hermes-discord
-  google_chat:
-    - hermes-google_chat
-  homeassistant:
-    - hermes-homeassistant
   qqbot:
     - hermes-qqbot
   signal:
     - hermes-signal
   slack:
     - hermes-slack
-  teams:
-    - hermes-teams
   telegram:
     - hermes-telegram
   whatsapp:
@@ -292,13 +287,12 @@ onboarding:
     busy_input_prompt: true
     profile_build_offered: true
 plugins:
+  disabled: []
   enabled:
     - disk-cleanup
-    - echarts-in-chat
     - homeassistant
     - session-lens
     - toolaria
-  disabled: []
 _left_core_scoped:
   - homeassistant
 _left_core_installed:
@@ -306,3 +300,6 @@ _left_core_installed:
 providers:
   openrouter:
     stale_timeout_seconds: 90
+    base_url: https://routerai.ru/api/v1
+gateway:
+  multiplex_profiles: true
